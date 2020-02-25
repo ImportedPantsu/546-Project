@@ -1,4 +1,9 @@
 game-
+- save/load progress, score, achievement
+- Making friends via social media account
+- Compete with friends
+- Sandbox personal level and share it
+- Background music
 
 corona-
 - Main page
@@ -8,12 +13,13 @@ corona-
 
 learning-
 - Main page
-	- lists avaible topics for learning
+	- lists avaible topics (category) for learning
 	- preview of videos under topic
+	- Top hits, recommendation
 - Topics page
 	- lists videos under topic in order of advancing difficulty
 	- assigments
-	- links to readings 
+	- links to readings
 - Users pages
 	- completed videos
 	- saved videos
@@ -26,6 +32,6 @@ learning-
 	- Videos could be faded if they've been watched
 
 music-
-	ability to like station
-	reccomendation
-
+	- Top hits
+	- Recommendation based on user history
+	- Links to youtube, other free website
