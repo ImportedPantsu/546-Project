@@ -13,6 +13,8 @@ The site will be a place for users to learn about and play the game Sudoku. The 
 *	Different game difficulties: easy, medium, hard 
   * This can be generated automatically, which is one of the functions
 *	High score table
+* Automatically judge game whethear successful or not
+* After finished, there will be a promot
 *	Automatically map generator
     * Also automatically judge the difficulties, and optionally can be added to the collections in the database
 *	Music
@@ -20,7 +22,13 @@ The site will be a place for users to learn about and play the game Sudoku. The 
 ## Extra Features:
 *	Sandbox Design, share, and compete
 *	Social Media sharing(copied from Hill’s project. It should be a independent feature) // a text or link built by the web page, which can be sent to social medias
-*	Comments(a comment function is independent part from anything. This may add some points.)
+* record the time cosuming
+* Automatically record the score based on the time and the difficulty
+* customer can give up during the game processing, due to different operations from successed
+* customer can get the solution, same as giving up
+* After finished, continue a new game or back to menu
+* finished game will have a unique label
+*	Comments(a comment function is independent part from anything. This may add some points.) on the finnished game.
 *	Every click or prompt should have a beep 
 *	Every user has his own map collection//this is for the soduko game
 *	This will be a refundable game, every user finishes 10 ultimate level games, will receive some cash from their mailbox.(we build this function through get user’s mail address from database, the money is from ads)
