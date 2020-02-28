@@ -11,7 +11,8 @@ The site will be a place for users to learn about and play the game Sudoku. The 
 *	Save / Load game level, along with score
 *	A introduction or helper page
 *	Different game difficulties: easy, medium, hard 
-  * This can be generated automatically, which is one of the functions
+    * This can be generated automatically, which is one of the functions
+* Automatically record the score based on the time and the difficulty
 *	High score table
 * Prompt when the user has completed the game
 *	Automatically map generator
@@ -23,7 +24,6 @@ The site will be a place for users to learn about and play the game Sudoku. The 
 *	Social Media sharing
     * A text or link built by the web page, which can be sent to social medias
 * Record the time taken to complete current game
-* Automatically record the score based on the time and the difficulty
 * User has option to give up during the game
 * User can get the solution when giving up
 * After finishing the user can have the choice to continue to a new game or go back to the menu
