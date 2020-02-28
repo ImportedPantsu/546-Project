@@ -8,7 +8,7 @@ Elton Aloysius, Cheng Cheng, Dan Pelis, lin Yang
 The site will be a place for users to learn about and play the game Sudoku. The hope is that it will be enjoyed by users at a variety of skill levels by offering a tutuorial and mutiple difficulties. 
 
 ## Core Features:
-*	Save / Load game level, score// this can be three features which gets three parts of score
+*	Save / Load game level, along with score
 *	A introduction or helper page
 *	Different game difficulties: easy, medium, hard 
   * This can be generated automatically, which is one of the functions
@@ -30,6 +30,6 @@ The site will be a place for users to learn about and play the game Sudoku. The 
 * Finished games will have a unique label
 *	Every click or prompt has a sound 
 *	Every user can save their own map collection
-*	This will be a refundable game, every user finishes 10 ultimate level games, will receive some cash from their mailbox.(we build this function through get user’s mail address from database, the money is from ads)
 *	We can add some ads in it. Firstly leave is empty with label ”advertisement”.
 *	We can be accessed from the potential advertiser who plays the game(“ contact me” part, there is an email address)
+* This will be a refundable game, every user finishes 10 ultimate level games, will receive some cash from their mailbox.(we build this function through get user’s mail address from database, the money is from ads)
