@@ -1,0 +1,24 @@
+{
+  "name": "sudoku-paradise",
+  "version": "1.0.0",
+  "description": "Sudoku Website for CS-546",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImportedPantsu/546-Project.git"
+  },
+  "author": "Daniel Pelis, Elton Aloysius, Cheng Cheng, Lin Yang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ImportedPantsu/546-Project/issues"
+  },
+  "homepage": "https://github.com/ImportedPantsu/546-Project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3"
+  }
+}
