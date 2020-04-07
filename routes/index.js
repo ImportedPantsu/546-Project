@@ -8,6 +8,13 @@ const constructorMethod = app => {
     app.use("/maps", mapsRoute);
 
     app.use("/", home);
+    
+    app.use("/tutorial", (req, res) =>{
+        res.render('tutorial/index', {
+            title: "Sudoku Map",
+        });
+    });
+
     app.use("*", (req, res) => {
         res.redirect('/');
     });
