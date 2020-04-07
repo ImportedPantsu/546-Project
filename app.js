@@ -15,9 +15,11 @@ configRoutes(app);
 
 const maps = require("./data/maps")
 
+/*
 maps.createMap("Map1");
 maps.createMap("Map2");
 maps.createMap("Map3");
+*/
 
 app.listen(3000, () => {
 	console.log("We've now got a server!");

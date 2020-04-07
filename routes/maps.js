@@ -4,10 +4,13 @@ const result = require("../data/maps");
 const mapData = require("../data/maps");
 
 router.get("/", async (req, res) => {
-    res.render('maps/index', 
+    mapList = await mapData.getAllMaps();
+    res.render('maps/mapsHome', 
         {
-            title: "Sudoku Map",});
+            maps: mapList,
+            title: "Sudoku Map",
         });
+});
 
 router.get("/:id", async (req, res) => {
     map = await mapData.getMapById(req.params.id);
