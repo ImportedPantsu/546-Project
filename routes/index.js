@@ -1,15 +1,15 @@
 const path = require("path");
-const mapRoute = require("./map");
+const mapsRoute = require("./maps");
+const home = require("./home");
+
 
 // Corresponds routes to their repective js files
 const constructorMethod = app => {
-    app.use("/map", mapRoute);
+    app.use("/maps", mapsRoute);
 
-    app.use("/", (req, res) => {
-        res.sendFile(path.resolve('static/index.html'))
-    });
+    app.use("/", home);
     app.use("*", (req, res) => {
-        res.status(404).json({error: "Route not found"});
+        res.redirect('/');
     });
 };
 
