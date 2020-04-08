@@ -5,7 +5,12 @@
         {{#each mapData}}
             <div class="row">
             {{#each this}}
-                <span class="cell">{{this}}</span>
+                {{#if this}}
+                    <span class="cell">{{this}}</span>
+                {{/if}}
+                {{#unless this}}
+                    <input class = "cell" type = "number" min = "1" max = "9">
+                {{/unless}}
             {{/each}}
             </div>
         {{/each}}
