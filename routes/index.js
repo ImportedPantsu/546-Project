@@ -1,12 +1,22 @@
 const path = require("path");
+const mapsRoute = require("./maps");
+const home = require("./home");
+
 
 // Corresponds routes to their repective js files
 const constructorMethod = app => {
-    app.use("/", (req, res) => {
-        res.sendFile(path.resolve('public/index.html'))
+    app.use("/maps", mapsRoute);
+
+    app.use("/", home);
+    
+    app.use("/tutorial", (req, res) =>{
+        res.render('tutorial/index', {
+            title: "Sudoku Map",
+        });
     });
+
     app.use("*", (req, res) => {
-        res.status(404).json({error: "Route not found"});
+        res.redirect('/');
     });
 };
 
