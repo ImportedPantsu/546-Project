@@ -1,3 +1,14 @@
 {{#with map}}
 <h2>{{mapName}}</h2>
+<div class = "map">
+    <div class= "table">
+        {{#each mapData}}
+            <div class="row">
+            {{#each this}}
+                <span class="cell">{{this}}</span>
+            {{/each}}
+            </div>
+        {{/each}}
+    </div>
+</div>
 {{/with}}

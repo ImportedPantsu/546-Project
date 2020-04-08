@@ -1,6 +1,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const maps = mongoCollections.maps;
 const ObjectId = require('mongodb').ObjectId;
+const mapGenerator = require("./generator")
 
 
 module.exports = {
@@ -10,8 +11,10 @@ module.exports = {
         if (!mapName) throw "Error: Must provide name";
         
         const mapsCollection = await maps();
+        let map = mapGenerator.generate();
         let newMap = {
             mapName: mapName,
+            mapData: map,
         };
 
         const addMap = await mapsCollection.insertOne(newMap);

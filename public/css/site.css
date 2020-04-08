@@ -30,6 +30,27 @@
 
 body {
     background-color: lightgrey;
-    }
+}
+
+.map {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  display: inline-grid;
+}
+
+.row {
+  display:flex;
+}
+
+.cell {
+  text-align: center;
+  border: 1px solid black;
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+}
     
     

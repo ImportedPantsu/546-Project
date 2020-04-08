@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const result = require("../data/maps");
-const mapData = require("../data/maps");
+const data = require("../data/index")
+const mapData = data.maps;
 
 router.get("/", async (req, res) => {
     mapList = await mapData.getAllMaps();
@@ -13,11 +13,11 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    map = await mapData.getMapById(req.params.id);
+    let map = await mapData.getMapById(req.params.id);
     res.render('maps/index', 
         {
             title: "Sudoku Map",
-            map: map
+            map: map,
         });
 });
 
