@@ -5,7 +5,7 @@ function generate() {
         let empty = Math.floor(Math.random() * 9);
         for(let i = 0; i < 9; i++){
             if (i == empty){
-                column.push('')
+                column.push(null)
             }
             else{
                 column.push(Math.floor(Math.random() * 9) + 1);
