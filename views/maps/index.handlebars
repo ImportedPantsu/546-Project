@@ -2,8 +2,8 @@
 <h2>{{_id}}</h2>
 
 <div id = "map" class = "map">
-    <div id = "table" class= "table">
-        <form method = "POST" id="static-form">
+    <form method = "POST" id="static-form">
+        <div id = "table" class= "table">
         {{#each mapData}}
             <div class="row">
             {{#each this}}
@@ -16,12 +16,17 @@
             {{/each}}
             </div>
         {{/each}}
-        <button type="submit">Submit</button>
+        </div>
+        <button type="submit" id="check">Submit</button>
         </form>
-    </div>
 </div>
 
+<form method="POST" id="defeat">
+    <button type="submit">Give Up :(</button>
+</form>
+
 <div id = "solution" class = "solution" hidden>
+    <h3>Solution</h3>
     <div id = "table" class= "table">
         {{#each solution}}
             <div class="row">

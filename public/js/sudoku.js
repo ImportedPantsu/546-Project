@@ -1,4 +1,5 @@
 const staticForm = document.getElementById("static-form");
+const defeatForm = document.getElementById("defeat");
 
 if (staticForm) {
     staticForm.addEventListener("submit", event => {
@@ -36,5 +37,14 @@ if (staticForm) {
         else {
             alert('Sorry you made some mistakes')
         }
+    });
+}
+
+if (defeatForm) {
+    defeatForm.addEventListener("submit", event => {
+        event.preventDefault();
+        document.getElementById("map").style = 'display:none;';
+        document.getElementById("defeat").style = 'display:none;';
+        document.getElementById("solution").removeAttribute("hidden");
     });
 }

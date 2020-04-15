@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
         {
             maps: mapList,
             title: "Sudoku Map",
+            style: '../../public/css/site.css'
         });
 });
 
@@ -18,6 +19,7 @@ router.get("/:id", async (req, res) => {
         {
             title: "Sudoku Map",
             map: map,
+            style: '../../public/css/maps.css'
         });
 });
 

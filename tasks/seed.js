@@ -1,4 +1,6 @@
 const mapData = require('../data/maps');
+const mongoCollections = require('../config/mongoCollections');
+const maps = mongoCollections.maps;
 
 const map1 = {
     mapData: [
@@ -82,6 +84,8 @@ const map3 = {
 };
 
 async function main() {
+    const mapsCollection = await maps();
+    mapsCollection.deleteMany({});
     try{
         await mapData.createMap(map1);
         await mapData.createMap(map2);
