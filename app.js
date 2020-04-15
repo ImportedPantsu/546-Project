@@ -3,6 +3,7 @@ const app = express();
 const static = express.static(__dirname + '/public');
 const configRoutes = require('./routes');
 const exphbs = require('express-handlebars');
+const seed = require("./tasks/seed");
 
 app.use('/public', static);
 app.use(express.json());
@@ -13,14 +14,12 @@ app.set('view engine', 'handlebars');
 
 configRoutes(app);
 
-const maps = require("./data/maps")
-
-
-maps.createMap("Map4");
-// maps.createMap("Map2");
-// maps.createMap("Map3");
-
-
+try{
+	seed.main();
+}catch(e){
+	console.log('Error: Could not seed maps');
+	console.log(`Error: ${e}`)
+}
 app.listen(3000, () => {
 	console.log("We've now got a server!");
 	console.log('Your routes will be running on http://localhost:3000');

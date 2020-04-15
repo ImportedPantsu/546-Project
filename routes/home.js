@@ -7,7 +7,8 @@ router.get("/", async (req, res) => {
     res.render('home/index', 
         {
             maps: mapList,
-            title: "Sudoku Paradise"
+            title: "Sudoku Paradise",
+            style: '../../public/css/site.css'
         });
 });
 

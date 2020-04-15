@@ -1,19 +1,41 @@
 {{#with map}}
-<h2>{{mapName}}</h2>
-<div class = "map">
-    <div class= "table">
+<h2>{{_id}}</h2>
+
+<div id = "map" class = "map">
+    <form method = "POST" id="static-form">
+        <div id = "table" class= "table">
         {{#each mapData}}
             <div class="row">
             {{#each this}}
                 {{#if this}}
-                    <span class="cell">{{this}}</span>
+                    <span class="cell" id = {{@../index}}:{{@index}}>{{this}}</span>
                 {{/if}}
                 {{#unless this}}
-                    <input class = "cell" type = "number" min = "1" max = "9">
+                    <input id = {{@../index}}:{{@index}} class = "input-cell cell" type = "number" min = "1" max = "9">
                 {{/unless}}
+            {{/each}}
+            </div>
+        {{/each}}
+        </div>
+        <button type="submit" id="check">Submit</button>
+        </form>
+</div>
+
+<form method="POST" id="defeat">
+    <button type="submit">Give Up :(</button>
+</form>
+
+<div id = "solution" class = "solution" hidden>
+    <h3>Solution</h3>
+    <div id = "table" class= "table">
+        {{#each solution}}
+            <div class="row">
+            {{#each this}}
+                    <span class="cell" id = s{{@../index}}:{{@index}}>{{this}}</span>
             {{/each}}
             </div>
         {{/each}}
     </div>
 </div>
 {{/with}}
+<script src='../public/js/sudoku.js'></script>
