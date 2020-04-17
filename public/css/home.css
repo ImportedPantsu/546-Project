@@ -1,0 +1,61 @@
+.topnav {
+    background-color: rgb(65, 62, 62);
+    overflow: hidden;
+  }
+  
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+  
+.topnav a:active {
+    background-color: rgb(76, 175, 167);
+    color: white;
+}
+
+body {
+    background-color: lightgrey;
+}
+
+.map {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  display: inline-grid;
+  background-color: rgb(224, 199, 166);
+}
+
+.row {
+  display:flex;
+}
+
+.cell {
+  text-align: center;
+  font-size: x-small;
+  border: 1px solid black;
+  padding: 7px;
+  width: 7px;
+  height: 7px;
+}
+#mapList >  ul {
+    list-style: none;
+    position: absolute;
+    top: -1000em;
+    left: 0px;
+}
+
+#mapList li{
+    display: inline-block;
+    margin: 5%;
+}
