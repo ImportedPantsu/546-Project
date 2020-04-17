@@ -22,7 +22,7 @@ The site will be a place for users to learn about and play the game Sudoku. The 
   * High score table
     * Score table displaying the highest scoring players for the current map
   * Record the time taken to complete current game
-  * User has option to give up during the game, and get the solution
+  * ~~User has option to give up during the game, and get the solution~~
 
 #### Extra Features 
   * Prompt when the user has completed the game
