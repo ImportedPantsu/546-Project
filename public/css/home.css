@@ -48,14 +48,16 @@ body {
   width: 7px;
   height: 7px;
 }
-#mapList >  ul {
-    list-style: none;
-    position: absolute;
-    top: -1000em;
-    left: 0px;
+
+#mapList{
+    text-align: center;
+}
+
+#mapList .table{
+    display: inline-block;
 }
 
 #mapList li{
     display: inline-block;
-    margin: 5%;
+    margin: 2%;
 }
