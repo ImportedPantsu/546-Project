@@ -4,38 +4,22 @@ const defeatForm = document.getElementById("defeat");
 if (staticForm) {
     staticForm.addEventListener("submit", event => {
         event.preventDefault();
-        let table = [];
-        for(let i = 0; i < 8; i++){
-            let row = [];
-            for(let j = 0; j < 8; j++){
+        let wrong = false;
+        for(let i = 0; i < 9; i++){
+            for(let j = 0; j < 9; j++){
                 let element = document.getElementById(`${i}:${j}`);
-                if (element.classList.contains("input-cell")){
-                    row.push(element.value);
+                let solution = document.getElementById(`s${i}:${j}`);
+                if (element.classList.contains("input-cell") && element.value != solution.innerHTML){
+                    element.classList.add('incorrect');
+                    wrong = true;
                 }
-                else{
-                    row.push(element.innerHTML);
+                if (element.classList.contains("input-cell") && element.value == solution.innerHTML){
+                    element.classList.remove('incorrect');
                 }
             }
-            table.push(row);
         }
-
-        let solution = [];
-        for(let i = 0; i < 8; i++){
-            let row = [];
-            for(let j = 0; j < 8; j++){
-                let element = document.getElementById(`s${i}:${j}`);
-                row.push(element.innerHTML);
-            }
-            solution.push(row);
-        }
-
-        console.log(JSON.stringify(table));
-        console.log(JSON.stringify(solution));
-        if(JSON.stringify(table) == JSON.stringify(solution)){
-            alert('You Win!');
-        }
-        else {
-            alert('Sorry you made some mistakes')
+        if(!wrong){
+            alert("You Win!");
         }
     });
 }

@@ -69,3 +69,7 @@ input[type=number] {
 .solution{
     text-align: center;
 }
+
+.incorrect{
+  border: 2px solid red;
+}
