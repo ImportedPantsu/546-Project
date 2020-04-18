@@ -12,7 +12,7 @@ const constructorMethod = app => {
     app.use("/tutorial", (req, res) =>{
         res.render('tutorial/index', {
             title: "Sudoku Map",
-            style: '../../public/css/site.css'
+            style: '../../public/css/tutorial.css'
         });
     });
 

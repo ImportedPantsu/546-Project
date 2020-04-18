@@ -52,14 +52,6 @@ body {
   background-color:rgb(231, 137, 137);
 }
 
-input[type=number] {
-  -moz-appearance: textfield;
+h1, h2{
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-    
-    

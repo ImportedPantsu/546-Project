@@ -91,3 +91,7 @@ input[type=number] {
   border: 1px solid black;
   border-collapse: collapse;
 }
+
+h1, h2{
+  font-family: Arial, Helvetica, sans-serif;
+}
