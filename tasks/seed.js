@@ -26,7 +26,23 @@ const map1 = {
         [7,6,3,4,1,8,2,5,9]
     ],
     difficulty: 'easy',
-    scoreData: {}
+    scoreData: [
+        {
+            rank: 1,
+            user: '',
+            score: 0
+        },
+        {
+            rank: 2,
+            user: '',
+            score: 0
+        },
+        {
+            rank: 3,
+            user: '',
+            score: 0
+        },
+    ]
 };
 
 const map2 = {

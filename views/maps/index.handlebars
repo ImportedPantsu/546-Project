@@ -1,8 +1,12 @@
 {{#with map}}
 <h2>{{_id}}</h2>
 
+<form id = "start-form">
+<button type="submit" id="start">Start</button>
+</form>
+<span id='difficulty' hidden>{{difficulty}}</span>
 <div id = "map" class = "map">
-    <form method = "POST" id="static-form">
+    <form method = "POST" id="static-form" hidden>
         <div id = "table" class= "table">
         {{#each mapData}}
             <div class="row">
@@ -21,7 +25,7 @@
         </form>
 </div>
 
-<form method="POST" id="defeat">
+<form method="POST" id="defeat" hidden>
     <button type="submit">Give Up :(</button>
 </form>
 
@@ -37,5 +41,20 @@
         {{/each}}
     </div>
 </div>
+
+<table id="highscore-table">
+    <tr>
+        <th>Rank</th>
+        <th>User</th>
+        <th>Score</th>
+    </tr>
+    {{#each scoreData}}
+    <tr>
+        <td>{{rank}}</td>
+        <td>{{user}}</td>
+        <td>{{score}}</td>
+    </tr>
+    {{/each}}
+</table>
 {{/with}}
 <script src='../public/js/sudoku.js'></script>

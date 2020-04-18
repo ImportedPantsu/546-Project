@@ -33,6 +33,7 @@ body {
 
 .table {
   display: inline-grid;
+  border-collapse: collapse;
   background-color: rgb(224, 199, 166);
 }
 
@@ -72,4 +73,21 @@ input[type=number] {
 
 .incorrect{
   border: 2px solid red;
+}
+
+#highscore-table td {
+
+  border: 1px solid black;
+}
+
+#highscore-table th {
+  text-align: left;
+  width: 50px;
+  border: 1px solid black;
+}
+
+#highscore-table {
+  margin: auto;
+  border: 1px solid black;
+  border-collapse: collapse;
 }
