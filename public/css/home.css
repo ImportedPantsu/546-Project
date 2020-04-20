@@ -1,10 +1,10 @@
-body {
-    background-color: lightgrey;
-}
-
 .map {
   display: flex;
   justify-content: center;
+}
+
+h1,h2,#mapList{
+  margin-left: 8px;
 }
 
 .table {

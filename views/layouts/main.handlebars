@@ -13,21 +13,21 @@
         <a href="/tutorial">Tutorial</a>
         {{#if user}}
         <div id="logout">
-            <form id="logout-form">
+            <form  method="POST" id="logout-form" action="/user/logout">
                 <button type="submit">Logout</button>
             </form>
         </div>
         {{/if}}
         {{#unless user}}
+        {{#if loginError}}
+            <span id="error">Invalid Username or Password</span>
+        {{/if}}
         <div id="login">
             <form method="POST" id="login-form" action="/user/login">
                 <input name="username" placeholder="username">
                 <input name="password" placeholder="password">
                 <button type = "submit">Submit</button>
             </form>
-            {{#if loginError}}
-            <span id="error">Invalid Username or Password</span>
-            {{/if}}
         </div>
         {{/unless}}
     </div> 

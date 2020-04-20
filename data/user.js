@@ -2,6 +2,7 @@ const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const ObjectId = require('mongodb').ObjectId;
 const bcrypt = require('bcryptjs');
+const mapFunctions = require('./maps');
 
 
 module.exports = {
@@ -30,7 +31,7 @@ module.exports = {
             email: user.email,
             username: user.username,
             hashedPassword: hash,
-            savedMaps: []
+            savedMaps: {}
         };
         
         const usersCollection = await users();
@@ -39,5 +40,52 @@ module.exports = {
         
         const addedId = createdUser.insertedId;
         return await this.getUser(addedId);
+    },
+
+    async saveGame(username, mapId, mapData, time){
+        if(!username) throw 'Error: Must provide username';
+        if(typeof(username) != 'string') throw 'Error: username must be string';
+        if (!Array.isArray(mapData)) throw "Map data must be an array of arrays";
+        mapData.forEach(element => {
+            if(!Array.isArray(element)) throw "Map data must be an array of arrays";
+        });
+        if(!mapId) throw "Error: Must provide mapId";
+        if (typeof(mapId) == "string") mapId = ObjectId(mapId);
+        if(!ObjectId.isValid(mapId)) throw "Error: Must provide mapId as ObjectId";
+        
+        // Ensure map exists
+        try{
+            await mapFunctions.getMapById(mapId);
+        } catch(e){
+            return e;
+        }
+        const usersCollection = await users();
+        let newSaveData = {
+                mapData: mapData,
+                currentTime: time,
+            }
+        try{
+            const user = await this.getUser(username);
+            let monogoField = `savedMaps.${mapId}`
+            const savedMap = await usersCollection.updateOne({_id: user._id},{$set: {[monogoField]: newSaveData}});
+        } catch(e){
+            return e;
+        }
+
+    },
+
+    async loadGame(username, mapId){
+        if(!username) throw 'Error: Must provide username';
+        if(typeof(username) != 'string') throw 'Error: username must be string';
+        if(!mapId) throw "Error: Must provide mapId";
+        if (typeof(mapId) == "string") mapId = ObjectId(mapId);
+        if(!ObjectId.isValid(mapId)) throw "Error: Must provide mapId as ObjectId";
+        
+        try{
+            const user = await this.getUser(username);
+            return user['savedMaps'][mapId];
+        } catch(e){
+            return e;
+        }
     },
 }

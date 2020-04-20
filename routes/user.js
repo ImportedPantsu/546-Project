@@ -5,6 +5,17 @@ const userData = data.user
 const mapData = data.maps
 const bcrypt = require('bcryptjs');
 
+router.post("/logout", async (req, res) => {
+    req.session.destroy();
+    res.render('home/index', 
+    {
+        maps: mapList,
+        title: "Sudoku Paradise",
+        style: '../../public/css/home.css',
+        loginError: false,
+    }); 
+});
+
 router.post("/login", async (req, res) => {
     mapList = await mapData.getAllMaps();
     if(!req.body.username || !req.body.username) {
@@ -49,5 +60,30 @@ router.post("/login", async (req, res) => {
         console.log(e);
     }
 });
+
+router.post("/save", async (req, res) => {
+    let {time, mapId, mapData} = req.body;
+    let username = req.session.user.username;
+    userData.saveGame(username, mapId, mapData, time);
+    res.render('home/index', 
+    {
+        maps: mapList,
+        title: "Sudoku Paradise",
+        style: '../../public/css/home.css',
+
+    }); 
+});
+
+router.post("/load", async (req, res) => {
+    let {mapId} = req.body;
+    let username = req.session.user.username;
+    savedGame = await userData.loadGame(username, mapId);
+    return res.json({
+        mapData: savedGame.mapData,
+        time: savedGame.currentTime
+    });
+});
+
+
 
 module.exports = router;

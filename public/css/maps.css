@@ -2,6 +2,10 @@ body {
     background-color: lightgrey;
 }
 
+h1,h2,#start-form {
+  margin-left: 8px;
+}
+
 .map {
   display: flex;
   justify-content: center;
@@ -37,10 +41,22 @@ input[type=number] {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 380px;
+    border-radius: 12px;
+    background-color: rgb(40, 153, 40);
 }
 
-#defeat{
-    text-align: center;
+#check:hover {
+  background-color: rgb(31, 117, 31);
+}
+
+#game-functions{
+  text-align: center;
+}
+
+#game-functions form{
+  display: inline-block;
+  padding-bottom: 10px;
 }
 
 .solution{

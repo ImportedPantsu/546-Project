@@ -25,9 +25,18 @@
         </form>
 </div>
 
-<form method="POST" id="defeat" hidden>
-    <button type="submit">Give Up :(</button>
-</form>
+<div id="game-functions" hidden>
+    <form method="POST" id="defeat">
+        <button type="submit">Give Up :(</button>
+    </form >
+    <form method="POST" id="save">
+        <input id="savedMapId" value={{_id}} hidden>
+        <button type="submit">Save</button>
+    </form>
+    <form method="POST" id="load" action="/user/load">
+        <button type="submit">Load</button>
+    </form>
+</div>
 
 <div id = "solution" class = "solution" hidden>
     <h3>Solution</h3>
