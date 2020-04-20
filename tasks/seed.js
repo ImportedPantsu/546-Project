@@ -1,6 +1,8 @@
 const mapData = require('../data/maps');
+const userData = require('../data/user');
 const mongoCollections = require('../config/mongoCollections');
 const maps = mongoCollections.maps;
+const users = mongoCollections.users;
 
 const map1 = {
     mapData: [
@@ -99,13 +101,22 @@ const map3 = {
     scoreData: {}
 };
 
+const testUser = {
+    email: 'joe@doe.com',
+    username: 'fake',
+    password: 'password'
+}
+
 async function main() {
     const mapsCollection = await maps();
+    const usersCollection = await users();
+    usersCollection.deleteMany({});
     mapsCollection.deleteMany({});
     try{
         await mapData.createMap(map1);
         await mapData.createMap(map2);
         await mapData.createMap(map3);
+        await userData.createUser(testUser);
     } catch(e){
         throw e;
     }

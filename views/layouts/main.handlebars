@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>{{title}}</title>
+        <link rel="stylesheet" href='../../public/css/site.css'>
         <link rel="stylesheet" href={{style}}>
     </head>
     <h1>Sudoku Paradise</h1>
@@ -10,6 +11,25 @@
         <a href="/">Home</a>
         <a href="/maps">Maps</a>
         <a href="/tutorial">Tutorial</a>
+        {{#if user}}
+        <div id="logout">
+            <form id="logout-form">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+        {{/if}}
+        {{#unless user}}
+        <div id="login">
+            <form method="POST" id="login-form" action="/user/login">
+                <input name="username" placeholder="username">
+                <input name="password" placeholder="password">
+                <button type = "submit">Submit</button>
+            </form>
+            {{#if loginError}}
+            <span id="error">Invalid Username or Password</span>
+            {{/if}}
+        </div>
+        {{/unless}}
     </div> 
     <body>
         {{{body}}}
