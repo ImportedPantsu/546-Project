@@ -11,8 +11,8 @@
 The site will be a place for users to learn about and play the game Sudoku. The hope is that it will be enjoyed by users at a variety of skill levels by offering a tutorial and multiple difficulties.
 
 #### Core Features:
-  * Save / Load game level, along with score
-    * Logged in users can save their current game or load a previously saved ones. Saving a game will record the current board, time and score.
+  * ~~Save / Load game level, along with score~~
+    * ~~Logged in users can save their current game or load a previously saved ones. Saving a game will record the current board, time and score.~~
   * A introduction or helper page
     * This page will walk the user through the rules of Sudoku and show them how to use the website to play
   * ~~Different game difficulties: easy, medium, hard~~
