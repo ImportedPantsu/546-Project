@@ -3,7 +3,11 @@
   justify-content: center;
 }
 
+<<<<<<< HEAD
 h2,#mapList{
+=======
+h1,h2,#mapList{
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
   margin-left: 8px;
 }
 
@@ -36,4 +40,11 @@ h2,#mapList{
 #mapList li{
     display: inline-block;
     margin: 2%;
+<<<<<<< HEAD
+=======
+}
+
+h1, h2{
+  font-family: Arial, Helvetica, sans-serif;
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 }

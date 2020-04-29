@@ -37,8 +37,12 @@ router.get("/:id", async (req, res) => {
             title: "Sudoku Map",
             map: map,
             style: '../../public/css/maps.css',
+<<<<<<< HEAD
             user: req.session.user,
             loggedIn: loggedIn
+=======
+            user: req.session.user
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
         });
 });
 

@@ -12,6 +12,7 @@ let difficultyScore = {
     'hard': 10
 };
 
+<<<<<<< HEAD
 
 function checkScoreBoard(score, username = 'Anon'){
     let mapId = window.location.href.split("/").slice(-1)[0];
@@ -42,6 +43,8 @@ function checkScoreBoard(score, username = 'Anon'){
     }
 }
 
+=======
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 if (startForm) {
     startForm.addEventListener("submit", event => {
         let startDate = new Date();
@@ -77,6 +80,7 @@ if (staticForm) {
             console.log((1000000/(endTime - startTime)));
             let score = Math.round(difficultyMultiplier * (1000000/(endTime - startTime)));
             console.log(score);
+<<<<<<< HEAD
             let username;
             try{
                 username = document.getElementById("username").innerHTML.split(" ").slice(-1)[0].slice(0,-1)
@@ -85,6 +89,10 @@ if (staticForm) {
                 checkScoreBoard(score);
             }
             alert(`You Win!\nScore: ${score}`);
+=======
+            alert(`You Win!\nScore: ${score}`);
+
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
         }
     });
 }
@@ -121,17 +129,27 @@ if(saveForm) {
         endTime = endDate.getTime()/1000;
         let time = endTime - startTime;
         console.log(`Saved Game: ID ${mapId} Time ${time} Data ${table}`);
+<<<<<<< HEAD
         let requestConfig = {
             method: 'post',
             contentType: "application/json" ,
             data: JSON.stringify({
+=======
+        return fetch('/user/save',{
+            method: 'post',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
                 time: time,
                 mapData: table,
                 mapId: mapId
             })
+<<<<<<< HEAD
         };
         $.ajax(requestConfig).then(function(responseMessage) {
             return $(responseMessage)
+=======
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
         });
     });
 }
@@ -141,6 +159,7 @@ if (loadForm) {
         event.preventDefault();
 
         let mapId = document.getElementById("savedMapId").value;
+<<<<<<< HEAD
         let requestConfig = {
             method: 'POST',
             url: '/user/load',
@@ -164,5 +183,26 @@ if (loadForm) {
                 }
             }
         });
+=======
+        let savedData = await fetch('/user/load',{
+            method: 'post',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                mapId: mapId
+            })
+        });
+        console.log(savedData.json());
+        let loadedData = savedData.json().body.mapData;
+        console.log(loadedData)
+        for(let i = 0; i < 8; i++){
+            for(let j = 0; j < 8; j++){
+                let element = document.getElementById(`${i}:${j}`);
+                let savedCell = loadedData[i][j];
+                if (element.classList.contains("input-cell")){
+                    element.value = savedCell;
+                }
+            }
+        }
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
     });
 }
