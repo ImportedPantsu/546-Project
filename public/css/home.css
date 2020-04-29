@@ -1,0 +1,50 @@
+.map {
+  display: flex;
+  justify-content: center;
+}
+
+<<<<<<< HEAD
+h2,#mapList{
+=======
+h1,h2,#mapList{
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
+  margin-left: 8px;
+}
+
+.table {
+  display: inline-grid;
+  background-color: rgb(224, 199, 166);
+}
+
+.row {
+  display:flex;
+}
+
+.cell {
+  text-align: center;
+  font-size: x-small;
+  border: 1px solid black;
+  padding: 7px;
+  width: 7px;
+  height: 7px;
+}
+
+#mapList{
+    text-align: center;
+}
+
+#mapList .table{
+    display: inline-block;
+}
+
+#mapList li{
+    display: inline-block;
+    margin: 2%;
+<<<<<<< HEAD
+=======
+}
+
+h1, h2{
+  font-family: Arial, Helvetica, sans-serif;
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
+}

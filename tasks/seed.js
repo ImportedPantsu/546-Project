@@ -1,6 +1,8 @@
 const mapData = require('../data/maps');
+const userData = require('../data/user');
 const mongoCollections = require('../config/mongoCollections');
 const maps = mongoCollections.maps;
+const users = mongoCollections.users;
 
 const map1 = {
     mapData: [
@@ -26,7 +28,35 @@ const map1 = {
         [7,6,3,4,1,8,2,5,9]
     ],
     difficulty: 'easy',
-    scoreData: {}
+    scoreData: [
+        {
+            rank: 1,
+<<<<<<< HEAD
+            user: '-',
+=======
+            user: '',
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
+            score: 0
+        },
+        {
+            rank: 2,
+<<<<<<< HEAD
+            user: '-',
+=======
+            user: '',
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
+            score: 0
+        },
+        {
+            rank: 3,
+<<<<<<< HEAD
+            user: '-',
+=======
+            user: '',
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
+            score: 0
+        },
+    ]
 };
 
 const map2 = {
@@ -53,7 +83,27 @@ const map2 = {
         [7,4,5,3,1,6,8,9,2]
     ],
     difficulty: 'intermediate',
+<<<<<<< HEAD
+    scoreData: [
+        {
+            rank: 1,
+            user: '-',
+            score: 0
+        },
+        {
+            rank: 2,
+            user: '-',
+            score: 0
+        },
+        {
+            rank: 3,
+            user: '-',
+            score: 0
+        }
+    ]
+=======
     scoreData: {}
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 };
 
 const map3 = {
@@ -80,16 +130,45 @@ const map3 = {
         [6,2,7,4,3,5,1,9,8]
     ],
     difficulty: 'hard',
+<<<<<<< HEAD
+    scoreData:  [
+        {
+            rank: 1,
+            user: '-',
+            score: 0
+        },
+        {
+            rank: 2,
+            user: '-',
+            score: 0
+        },
+        {
+            rank: 3,
+            user: '-',
+            score: 0
+        }
+    ]
+=======
     scoreData: {}
+>>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 };
+
+const testUser = {
+    email: 'joe@doe.com',
+    username: 'fake',
+    password: 'password'
+}
 
 async function main() {
     const mapsCollection = await maps();
+    const usersCollection = await users();
+    usersCollection.deleteMany({});
     mapsCollection.deleteMany({});
     try{
         await mapData.createMap(map1);
         await mapData.createMap(map2);
         await mapData.createMap(map3);
+        await userData.createUser(testUser);
     } catch(e){
         throw e;
     }

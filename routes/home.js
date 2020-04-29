@@ -8,7 +8,8 @@ router.get("/", async (req, res) => {
         {
             maps: mapList,
             title: "Sudoku Paradise",
-            style: '../../public/css/site.css'
+            style: '../../public/css/home.css',
+            user: req.session.user
         });
 });
 
