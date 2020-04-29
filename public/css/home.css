@@ -1,0 +1,39 @@
+.map {
+  display: flex;
+  justify-content: center;
+}
+
+h2,#mapList{
+  margin-left: 8px;
+}
+
+.table {
+  display: inline-grid;
+  background-color: rgb(224, 199, 166);
+}
+
+.row {
+  display:flex;
+}
+
+.cell {
+  text-align: center;
+  font-size: x-small;
+  border: 1px solid black;
+  padding: 7px;
+  width: 7px;
+  height: 7px;
+}
+
+#mapList{
+    text-align: center;
+}
+
+#mapList .table{
+    display: inline-block;
+}
+
+#mapList li{
+    display: inline-block;
+    margin: 2%;
+}
