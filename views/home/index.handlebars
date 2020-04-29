@@ -1,6 +1,17 @@
 <h2>Home Page</h2>
-<ul>
+<ul id='mapList'>
     {{#each maps}}
-        <li><a href="/maps/{{_id}}">{{mapName}}</a></li>
+    <li>
+        <a href="/maps/{{_id}}"> Map {{_id}}</a> ({{difficulty}}):<br>
+            <div id = "table" class= "table">
+                {{#each mapData}}
+                    <div class="row">
+                    {{#each this}}
+                            <span class="cell" id = s{{@../index}}:{{@index}}>{{this}}</span>
+                    {{/each}}
+                    </div>
+                {{/each}}
+            </div>
+    </li>
     {{/each}}
 </ul>
