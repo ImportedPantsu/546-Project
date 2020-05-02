@@ -11,7 +11,31 @@
         <a href="/">Home</a>
         <a href="/maps">Maps</a>
         <a href="/tutorial">Tutorial</a>
-        <a href="/index_sam">Tuts</a>
+        <a>
+            <head>
+                <link href = "../public/css/tuts.css" rel = "stylesheet">
+                <script defer src = '../public/js/tuts.js'></script>
+            </head>
+            <body>
+                <button class = "tut_btn" data-modal-target="#modal"> Open Model</button>
+                <div class="modal" id="modal">
+                    <div class = "modal-header">
+                        <div class = "title"> How To Play Sudoku</div>
+                        <button data-close-button class = "close-button">&times;</button>
+                    </div>
+                    <div class= "Modal body">
+                        <h2 class="Goal">Goal</h2>
+                        <p class = "Goal_text">The Goal is to fill in all the empty cells on the board with the correct numbers.</p>
+                        <h2 class= "Rules">Rules</h2>
+                        <p class = "Rules_text">Cells each take a number between 1 and 9. A number may only appear once in a single row, column or three-by-three box</p>
+                        <h2 class = "how_play">How To Play</h2>
+                        <p class ="play">Click a cell to select it. Then click a number in the button bar to set or clear the number for the selected cell.</p> 
+                        </div>
+                </div>
+                <div id="overlay"></div>
+            </body>
+        </a>
+
         {{#if user}}
         <div id="logout">
             <form  method="POST" id="logout-form" action="/user/logout">
