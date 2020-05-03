@@ -6,7 +6,13 @@
         <link rel="stylesheet" href='../../public/css/site.css'>
         <link rel="stylesheet" href={{style}}>
     </head>
-    <h1>Sudoku Paradise</h1>
+    <h1>Sudoku Paradise 
+        <button type="submit" style ="border: 5; padding: 0px; background: transparent" id="music" onclick="javascript:togglePlay();">
+            <img src = "../public/js/Speaker.png" width="35" height="30"/>
+        </button>
+        <audio id="audio"><source src ="../public/js/Minecraft.mp3" type="audio/mp3"> Browser does not support audio format</audio>
+        <script defer src = '../public/js/music.js'></script>
+    </h1>
     <div class="topnav">
         <a href="/">Home</a>
         <a href="/maps">Maps</a>

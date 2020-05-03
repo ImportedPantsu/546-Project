@@ -10,10 +10,6 @@ const constructorMethod = app => {
     app.use("/", home);
     app.use("/user", user);
 
-    app.get('/tuts', (req, res) => {
-        res.render('tutorial/index_sam')
-    }),
-
     app.use("/tutorial", (req, res) =>{
         res.render('tutorial/index', {
             title: "Sudoku Map",
