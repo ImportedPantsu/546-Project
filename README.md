@@ -28,7 +28,7 @@ The site will be a place for users to learn about and play the game Sudoku. The 
   * Prompt when the user has completed the game
   * Automatically map generator
   * Also automatically judge the difficulties
-  * Background music
+  * ~~Background music~~
   * Sandbox Design, share, and compete
   * Social Media sharing
   * A text or link built by the web page, which can be sent to social medias
