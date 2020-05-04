@@ -31,29 +31,17 @@ const map1 = {
     scoreData: [
         {
             rank: 1,
-<<<<<<< HEAD
             user: '-',
-=======
-            user: '',
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
             score: 0
         },
         {
             rank: 2,
-<<<<<<< HEAD
             user: '-',
-=======
-            user: '',
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
             score: 0
         },
         {
             rank: 3,
-<<<<<<< HEAD
             user: '-',
-=======
-            user: '',
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
             score: 0
         },
     ]
@@ -83,7 +71,6 @@ const map2 = {
         [7,4,5,3,1,6,8,9,2]
     ],
     difficulty: 'intermediate',
-<<<<<<< HEAD
     scoreData: [
         {
             rank: 1,
@@ -101,9 +88,6 @@ const map2 = {
             score: 0
         }
     ]
-=======
-    scoreData: {}
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 };
 
 const map3 = {
@@ -130,7 +114,6 @@ const map3 = {
         [6,2,7,4,3,5,1,9,8]
     ],
     difficulty: 'hard',
-<<<<<<< HEAD
     scoreData:  [
         {
             rank: 1,
@@ -148,9 +131,6 @@ const map3 = {
             score: 0
         }
     ]
-=======
-    scoreData: {}
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 };
 
 const testUser = {

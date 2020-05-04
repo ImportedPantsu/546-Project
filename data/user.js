@@ -20,15 +20,9 @@ module.exports = {
     async createUser(user){
         if (!user.email || !user.username || !user.password) throw "Email: Must provide all fields (email, username, password)"
         if (!user.email.includes("@")) throw 'Error: Must provide valid email'
-<<<<<<< HEAD
         if (typeof(user.email) != 'string') throw "Error: Email must be a string";
         if (typeof(user.username) != 'string') throw "Username must be a string";
         if (typeof(user.password) != 'string') throw "Password must be a string";
-=======
-        if(typeof(user.email) != 'string') throw "Error: Email must be a string";
-        if(typeof(user.username) != 'string') throw "Username must be a string";
-        if(typeof(user.password) != 'string') throw "Password must be a string";
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(user.password, salt);
@@ -43,15 +37,9 @@ module.exports = {
         const usersCollection = await users();
         const createdUser = await usersCollection.insertOne(newUser);
         if (createdUser.insertedCount === 0) throw `Error: The following user could not be created: ${newUser}`;
-<<<<<<< HEAD
         const addedId = createdUser.insertedId;
         return await this.getUser(user.username).catch(function(e) {
             console.error(e)});
-=======
-        
-        const addedId = createdUser.insertedId;
-        return await this.getUser(addedId);
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
     },
 
     async saveGame(username, mapId, mapData, time){
