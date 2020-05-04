@@ -42,7 +42,7 @@ module.exports = {
             console.error(e)});
     },
 
-    async saveGame(username, mapId, mapData, time){
+    async saveGame(username, mapId, mapData, time, completed){
         if(!username) throw 'Error: Must provide username';
         if(typeof(username) != 'string') throw 'Error: username must be string';
         if (!Array.isArray(mapData)) throw "Map data must be an array of arrays";
@@ -63,6 +63,7 @@ module.exports = {
         let newSaveData = {
                 mapData: mapData,
                 currentTime: time,
+                completed: completed
             }
         try{
             const user = await this.getUser(username);

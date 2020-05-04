@@ -7,7 +7,7 @@ const mapGenerator = require("./generator")
 module.exports = {
     
     async createMap(map){
-        if (!map.mapData || !map.solution || !map.difficulty || ! map.scoreData) throw "Must provide all fields (mapData, solution, difficulty, scoreData)"
+        if (!map.mapName  || !map.mapData || !map.solution || !map.difficulty || ! map.scoreData) throw "Must provide all fields (mapData, solution, difficulty, scoreData)"
         if (!Array.isArray(map.mapData)) throw "Map data must be an array of arrays";
         map.mapData.forEach(element => {
             if(!Array.isArray(element)) throw "Map data must be an array of arrays";
@@ -16,11 +16,12 @@ module.exports = {
         map.solution.forEach(element => {
             if(!Array.isArray(element)) throw "Solution data must be an array of arrays";
         });
-        
+        if(typeof(map.mapName) != 'string') throw "Map Name must be a string";
         if(typeof(map.difficulty) != 'string') throw "Difficulty must be a string";
         if(typeof(map.scoreData) != 'object') throw "Score Data must be an object";
 
         let newMap = {
+            mapName: map.mapName,
             mapData: map.mapData,
             solution: map.solution,
             difficulty: map.difficulty,
