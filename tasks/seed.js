@@ -5,6 +5,7 @@ const maps = mongoCollections.maps;
 const users = mongoCollections.users;
 
 const map1 = {
+    mapName: "Map 1",
     mapData: [
         [null,null,null,2,6,null,7,null,1],
         [6,8,null,null,7,null,null,9,null],
@@ -48,6 +49,7 @@ const map1 = {
 };
 
 const map2 = {
+    mapName: "Map 2",
     mapData: [
         [null,2,null,6,null,8,null,null,null],
         [5,8,null,null,null,9,7,null,null],
@@ -91,6 +93,7 @@ const map2 = {
 };
 
 const map3 = {
+    mapName: "Map 3",
     mapData: [
         [null,null,null,6,null,null,4,null,null],
         [7,null,null,null,null,3,6,null,null],

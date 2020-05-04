@@ -62,9 +62,9 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
-    let {time, mapId, mapData} = req.body;
+    let {time, mapId, mapData, completed} = req.body;
     let username = req.session.user.username;
-    userData.saveGame(username, mapId, mapData, time);
+    userData.saveGame(username, mapId, mapData, time, completed);
     res.render('home/index', 
     {
         maps: mapList,

@@ -4,6 +4,7 @@ const defeatForm = document.getElementById("defeat");
 const saveForm = document.getElementById("save");
 const loadForm = document.getElementById("load");
 
+let mapId = window.location.href.split("/").slice(-1)[0];
 let startTime = 0;
 let endTime = 0;
 let difficultyScore = {
@@ -14,16 +15,14 @@ let difficultyScore = {
 
 
 function checkScoreBoard(score, username = 'Anon'){
-    let mapId = window.location.href.split("/").slice(-1)[0];
     let scoreTable = document.getElementById("highscore-table");
-    document.getElementById("username").innerHTML.split(" ").slice(-1)[0].slice(0,-1)
     let newScore = {}
     for (let i = 1; i < 4; i++){
         if (score > scoreTable.childNodes[1].childNodes[(i*2)].cells[2].firstChild.data){
             scoreTable.childNodes[1].childNodes[(i*2)].cells[2].firstChild.data = score;
             scoreTable.childNodes[1].childNodes[(i*2)].cells[1].firstChild.data = username;
             newScore["rank"] = i;
-            newScore["name"] = username;
+            newScore["user"] = username;
             newScore["score"] = score;
 
             let requestConfig = {
@@ -57,24 +56,31 @@ if (staticForm) {
     staticForm.addEventListener("submit", event => {
         event.preventDefault();
         let wrong = false;
+        let table = [];
         for(let i = 0; i < 9; i++){
+            let row = [];
             for(let j = 0; j < 9; j++){
                 let element = document.getElementById(`${i}:${j}`);
                 let solution = document.getElementById(`s${i}:${j}`);
                 if (element.classList.contains("input-cell") && element.value != solution.innerHTML){
+                    row.push(element.value);
                     element.classList.add('incorrect');
                     wrong = true;
                 }
                 if (element.classList.contains("input-cell") && element.value == solution.innerHTML){
+                    row.push(element.value);
                     element.classList.remove('incorrect');
                 }
+                else{
+                    row.push(element.value);
+                }
             }
+            table.push(row);
         }
         if(!wrong){
             let endDate = new Date();
             endTime = endDate.getTime()/1000;
             let difficultyMultiplier = difficultyScore[document.getElementById('difficulty').innerHTML];
-            console.log((1000000/(endTime - startTime)));
             let score = Math.round(difficultyMultiplier * (1000000/(endTime - startTime)));
             console.log(score);
             let username;
@@ -84,6 +90,20 @@ if (staticForm) {
             } catch (e){
                 checkScoreBoard(score);
             }
+            let requestConfig = {
+                method: 'post',
+                url: '/user/save',
+                contentType: "application/json" ,
+                data: JSON.stringify({
+                    time: (endTime - startTime),
+                    mapData: table,
+                    mapId: mapId,
+                    completed: true
+                })
+            };
+            $.ajax(requestConfig).then(function(responseMessage) {
+                return $(responseMessage)
+            });
             alert(`You Win!\nScore: ${score}`);
         }
     });
@@ -123,11 +143,13 @@ if(saveForm) {
         console.log(`Saved Game: ID ${mapId} Time ${time} Data ${table}`);
         let requestConfig = {
             method: 'post',
+            url: '/user/save',
             contentType: "application/json" ,
             data: JSON.stringify({
                 time: time,
                 mapData: table,
-                mapId: mapId
+                mapId: mapId,
+                completed: false
             })
         };
         $.ajax(requestConfig).then(function(responseMessage) {

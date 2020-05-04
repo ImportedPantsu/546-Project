@@ -1,10 +1,6 @@
 {{#with map}}
 <h2>{{_id}}</h2>
-<<<<<<< HEAD
 <input id="savedMapId" value={{_id}} hidden>
-=======
-
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 <form id = "start-form">
 <button type="submit" id="start">Start</button>
 </form>
@@ -33,7 +29,6 @@
     <form method="POST" id="defeat">
         <button type="submit">Give Up :(</button>
     </form >
-<<<<<<< HEAD
     {{#if ../loggedIn}}
         <form method="POST" id="save">
             <button type="submit">Save</button>
@@ -42,15 +37,6 @@
             <button type="submit">Load</button>
         </form>
     {{/if}}
-=======
-    <form method="POST" id="save">
-        <input id="savedMapId" value={{_id}} hidden>
-        <button type="submit">Save</button>
-    </form>
-    <form method="POST" id="load" action="/user/load">
-        <button type="submit">Load</button>
-    </form>
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
 </div>
 
 <div id = "solution" class = "solution" hidden>
@@ -75,11 +61,7 @@
     {{#each scoreData}}
     <tr>
         <td>{{rank}}</td>
-<<<<<<< HEAD
-        <td>{{name}}</td>
-=======
         <td>{{user}}</td>
->>>>>>> ec06f4114b12b1b783fc3a86cf7ae311f77817ed
         <td>{{score}}</td>
     </tr>
     {{/each}}
