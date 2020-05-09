@@ -7,8 +7,8 @@
         <link rel="stylesheet" href={{style}}>
     </head>
     <h1>Sudoku Paradise 
-        <button type="submit" style ="border: 5; padding: 0px; background: transparent" id="music" onclick="javascript:togglePlay();">
-            <img src = "../public/js/Speaker.png" width="35" height="30"/>
+        <button type="submit" id="music" onclick="javascript:togglePlay();">
+            <img src = "../public/js/Speaker.png"/>
         </button>
         <audio id="audio"><source src ="../public/js/Minecraft.mp3" type="audio/mp3"> Browser does not support audio format</audio>
         <script defer src = '../public/js/music.js'></script>
@@ -60,6 +60,9 @@
                 <input name="password" placeholder="password">
                 <button type = "submit">Submit</button>
             </form>
+        </div>
+        <div id="newUser">
+            <a href="/user/new">New here? Create an account!</a>
         </div>
         {{/unless}}
     </div> 

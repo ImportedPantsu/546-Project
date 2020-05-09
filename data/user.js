@@ -18,7 +18,7 @@ module.exports = {
     },
 
     async createUser(user){
-        if (!user.email || !user.username || !user.password) throw "Email: Must provide all fields (email, username, password)"
+        if (!user.email || !user.username || !user.password) throw "Error: Must provide all fields (email, username, password)"
         if (!user.email.includes("@")) throw 'Error: Must provide valid email'
         if (typeof(user.email) != 'string') throw "Error: Email must be a string";
         if (typeof(user.username) != 'string') throw "Username must be a string";
