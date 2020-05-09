@@ -29,7 +29,24 @@ router.post("/login", async (req, res) => {
         return;
     }
     try{
-        let user = await userData.getUser(req.body.username);
+        let user;        
+        // console.log("05/09/2020 lin 0");
+        //username is a string, but not in the database.
+        try{
+            user = await userData.getUser(req.body.username);
+        }
+        catch(e){
+            // console.log("05/09/2020 lin 1");
+            res.render('home/index', 
+            {
+                maps: mapList,
+                title: "Sudoku Paradise",
+                style: '../../public/css/home.css',
+                loginError: true
+            }); 
+            return;
+        }
+        // console.log("05/09/2020 lin 2");
         let match = await bcrypt.compare(req.body.password, user.hashedPassword);
         
         if (match){
@@ -55,8 +72,10 @@ router.post("/login", async (req, res) => {
                 style: '../../public/css/home.css',
                 loginError: true
             }); 
+            return;
         }
-    } catch(e){
+    } catch(e){        
+        // console.log("05/09/2020 lin 3");
         console.log(e);
     }
 });
@@ -97,6 +116,7 @@ router.post("/load", async (req, res) => {
     let {mapId} = req.body;
     let username = req.session.user.username;
     savedGame = await userData.loadGame(username, mapId);
+    if(savedGame.mapData===undefined) return;
     return res.json({
         mapData: savedGame.mapData,
         time: savedGame.currentTime
