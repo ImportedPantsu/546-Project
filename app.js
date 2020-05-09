@@ -22,6 +22,14 @@ app.use(
 	})
 );
 
+app.use((req, res, next)=>{
+    const timeStamp = new Date().toUTCString();
+    let sta = "(Non-Authenticated User)";
+	if(req.session.user) sta = "(Authenticated "+req.session.user.username +")";
+    console.log("("+timeStamp+"): "+req.method+"   "+req.originalUrl+"   "+sta);
+    next();
+})
+
 try{
 	seed.main();
 }catch(e){

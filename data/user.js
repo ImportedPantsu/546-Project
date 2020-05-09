@@ -70,7 +70,7 @@ module.exports = {
             let monogoField = `savedMaps.${mapId}`
             const savedMap = await usersCollection.updateOne({_id: user._id},{$set: {[monogoField]: newSaveData}});
         } catch(e){
-            return e;
+            console.log("save game: "+e);
         }
 
     },
@@ -86,7 +86,7 @@ module.exports = {
             const user = await this.getUser(username);
             return user['savedMaps'][mapId];
         } catch(e){
-            return e;
+            console.log("load game :"+e) ;
         }
     },
 }
