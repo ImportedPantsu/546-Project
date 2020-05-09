@@ -116,7 +116,7 @@ router.post("/load", async (req, res) => {
     let {mapId} = req.body;
     let username = req.session.user.username;
     savedGame = await userData.loadGame(username, mapId);
-    if(savedGame.mapData===undefined) return;
+    if(savedGame===undefined) return;
     return res.json({
         mapData: savedGame.mapData,
         time: savedGame.currentTime
