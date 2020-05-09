@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
             let userInfo = {};
             Object.assign(userInfo, user);
             delete userInfo.hashedPassword;
-            console.log(req.session);
+            // console.log(req.session);
             req.session.user = userInfo;
             res.render('home/index', 
             {
