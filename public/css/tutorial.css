@@ -72,6 +72,11 @@ body {
     margin-right: auto;
 }
 
+.intro{
+  font-size: x-large;  
+  font-style: oblique italic normal;
+  text-align: start;
+}
 #tutorial, #navigation {
   margin: auto;
   width: 80%;
