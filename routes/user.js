@@ -101,7 +101,13 @@ router.post("/create", async (req, res) => {
 
 router.post("/save", async (req, res) => {
     let {time, mapId, mapData, completed} = req.body;
-    let username = req.session.user.username;
+    let username = "visiter";
+    try{        
+        username = req.session.user.username;
+    }
+    catch(e){
+        console.log(e);
+    }
     userData.saveGame(username, mapId, mapData, time, completed);
     res.render('home/index', 
     {
@@ -114,7 +120,13 @@ router.post("/save", async (req, res) => {
 
 router.post("/load", async (req, res) => {
     let {mapId} = req.body;
-    let username = req.session.user.username;
+    let username = "visiter";
+    try{        
+        username = req.session.user.username;
+    }
+    catch(e){
+        console.log(e);
+    }
     savedGame = await userData.loadGame(username, mapId);
     if(savedGame===undefined) return;
     return res.json({
