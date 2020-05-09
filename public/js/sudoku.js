@@ -115,6 +115,7 @@ if (defeatForm) {
         document.getElementById("map").style = 'display:none;';
         document.getElementById("game-functions").style = 'display:none;';
         document.getElementById("solution").removeAttribute("hidden");
+        confirm('Home?')
     });
 }
 
