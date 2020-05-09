@@ -61,6 +61,25 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.get("/new", async (req, res) => {
+    res.render('newUser/index', 
+    {
+        title: "Sudoku Paradise",
+        style: '../../public/css/newUser.css',
+    }); 
+});
+
+router.post("/create", async (req, res) => {
+    try {
+        let createdUser = await userData.createUser(req.body);
+        console.log(createdUser)
+        req.session.user = createdUser;
+        res.redirect("/home")
+    } catch (e){
+        console.log(e);
+    }
+});
+
 router.post("/save", async (req, res) => {
     let {time, mapId, mapData, completed} = req.body;
     let username = req.session.user.username;

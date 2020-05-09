@@ -1,0 +1,23 @@
+
+<div class="info-block">
+    <h2>Create an Account!</h2>
+    <p>
+        With an account you can save and load game data of unfinished games.
+        You also have a chance to get your username featured if you become
+        one of the top scoring player on a map! Fill out the form below to
+        create an account. 
+    </p>
+
+    <form method="POST" id="user-creation" action="/user/create">
+        <label for="uname">Username:</label>
+        <input type="text" id="uname" name="username" placeholder="Username">
+
+        <label for="pwd">Password:</label>
+        <input type="password" id="pwd" name="password" placeholder="Password">
+
+        <label for="contact">Email:</label>
+        <input type="email" id="contact" name="email" placeholder="Email">
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

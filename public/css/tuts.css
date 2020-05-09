@@ -1,4 +1,4 @@
-*, *::after, *::before {
+*::after, *::before {
     box-sizing: border-box
 }
 
@@ -58,10 +58,10 @@
     pointer-events: none;
 }
 
-#overlay.active{
+/* #overlay.active{
     opacity: 1;
     pointer-events: all;
-}
+} */
 
 .tut_btn {
     background-color:  rgb(65, 62, 62);
