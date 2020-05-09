@@ -72,3 +72,33 @@ body {
     margin-right: auto;
 }
 
+#tutorial, #navigation {
+  margin: auto;
+  width: 80%;
+  background-color: rgb(65, 62, 62);
+  color: white;
+  padding-bottom: 8%;
+  padding-top: 10px;
+  border-radius: 5px;
+}
+
+#navigation {
+  margin-top: 20px;
+}
+
+#tutorial-block {
+  display: inline-block;
+  text-align:center;
+  padding-top: 20px;
+}
+
+#navigation ul{
+  margin-left: 15%;
+  text-align: left;
+}
+
+h2{
+  text-decoration: underline;
+  padding-top: 8px;
+}
+

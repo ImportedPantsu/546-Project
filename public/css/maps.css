@@ -1,9 +1,28 @@
 body {
-    background-color: lightgrey;
+  background-color: lightgrey;
 }
 
-h2,#start-form {
-  margin-left: 8px;
+#start-div-parent{
+  display: flex;
+  justify-content: center;
+}
+
+#start-div {
+  display: inline-block;
+  text-align: center;
+}
+
+#start-div h2{
+  margin-bottom: 0px;
+}
+
+#start-form{
+  margin-bottom: 20px;
+}
+
+#start-form button{
+  border-radius: 5px;
+  width: 100%;
 }
 
 .map {
@@ -34,10 +53,11 @@ h2,#start-form {
 }
 
 input[type=number] {
+  background-color: rgb(224, 199, 166);
   -moz-appearance: textfield;
 }
 
-#check{
+#check, #defeat button, #save button, #load button{
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -46,25 +66,47 @@ input[type=number] {
     background-color: rgb(40, 153, 40);
 }
 
+#defeat button{
+  background-color: rgb(240, 61, 61);
+}
+
+#save button, #load button{
+  width: 192px;
+  background-color: rgb(224, 199, 166);
+}
+
+#save button{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin-right: -4px;
+}
+
+#load button{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin-left: -4px;
+}
+
 #check:hover {
   background-color: rgb(31, 117, 31);
 }
 
 #game-functions{
   text-align: center;
+  padding-bottom: 10px;
 }
 
 #game-functions form{
   display: inline-block;
-  padding-bottom: 10px;
 }
 
 .solution{
     text-align: center;
+    padding-bottom: 20px;
 }
 
 .incorrect{
-  border: 2px solid red;
+  border: 1px solid red;
 }
 
 #highscore-table td {

@@ -41,6 +41,7 @@ body {
 #logout{
   padding-top: 19px;
   float: right;
+  padding-right: 8px;
 }
 
 #login{
@@ -52,14 +53,14 @@ body {
 
 #error{
   position: absolute;
-  right: 210px;
+  right: 229px;
   color: red;
 }
 
 #newUser a{
   position: absolute;
   color: rgb(76, 175, 167);
-  right: 282px;
+  right: 267px;
   font-size: 12px;
   bottom: 2px;
 }
@@ -85,6 +86,6 @@ h1 button img{
   vertical-align: bottom;
 }
 
-h1, h2, p, #username{
+h1, h2, p, #username, a{
   font-family: Arial, Helvetica, sans-serif;
 }
