@@ -184,6 +184,6 @@ function getArr(c, r){
 
 let map = generate();
 
-console.log(map);
+// console.log(map);
 
 module.exports = {generate};
