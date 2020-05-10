@@ -101,14 +101,12 @@ router.post("/create", async (req, res) => {
 
 router.post("/save", async (req, res) => {
     let {time, mapId, mapData, completed} = req.body;
-    let username = "visiter";
-    try{        
-        username = req.session.user.username;
+
+    if(req.session.user){
+        let username = req.session.user.username;
+        userData.saveGame(username, mapId, mapData, time, completed);
     }
-    catch(e){
-        console.log(e);
-    }
-    userData.saveGame(username, mapId, mapData, time, completed);
+
     res.render('home/index', 
     {
         maps: mapList,
