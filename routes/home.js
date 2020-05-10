@@ -3,7 +3,11 @@ const router = express.Router();
 const mapData = require("../data/maps");
 
 router.get("/", async (req, res) => {
-    mapList = await mapData.getAllMaps();
+    try{        
+        mapList = await mapData.getAllMaps();
+    }catch(e){
+        console.log("home getMap error: "+e);
+    }
     res.render('home/index', 
         {
             maps: mapList,

@@ -5,7 +5,11 @@ const generator = require("../data/generator");
 const mapData = data.maps;
 
 router.get("/", async (req, res) => {
-    mapList = await mapData.getAllMaps();
+    try{            
+        mapList = await mapData.getAllMaps();
+    }catch(e){
+        console.log("get map error: "+e);
+    }
     res.render('maps/mapsHome', 
         {
             maps: mapList,

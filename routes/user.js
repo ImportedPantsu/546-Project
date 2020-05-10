@@ -6,18 +6,27 @@ const mapData = data.maps
 const bcrypt = require('bcryptjs');
 
 router.post("/logout", async (req, res) => {
-    req.session.destroy();
-    res.render('home/index', 
-    {
-        maps: mapList,
-        title: "Sudoku Paradise",
-        style: '../../public/css/home.css',
-        loginError: false,
-    }); 
+    try {
+        req.session.destroy();
+        res.render('home/index', 
+        {
+            maps: mapList,
+            title: "Sudoku Paradise",
+            style: '../../public/css/home.css',
+            loginError: false,
+        }); 
+    }catch(e){
+        console.log("logout error: "+e);
+        res.redirect("/");
+    }
 });
 
 router.post("/login", async (req, res) => {
-    mapList = await mapData.getAllMaps();
+    try{
+        mapList = await mapData.getAllMaps();
+    }catch(e){
+        console.log("login getMap error: "+e);
+    }
     if(!req.body.username || !req.body.password) {
         res.render('home/index', 
         {
