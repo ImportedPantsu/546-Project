@@ -18,7 +18,7 @@ router.post("/logout", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     mapList = await mapData.getAllMaps();
-    if(!req.body.username || !req.body.username) {
+    if(!req.body.username || !req.body.password) {
         res.render('home/index', 
         {
             maps: mapList,
@@ -28,6 +28,7 @@ router.post("/login", async (req, res) => {
         });
         return;
     }
+    req.body.username = req.body.username.trim();
     try{
         let user;        
         // console.log("05/09/2020 lin 0");
