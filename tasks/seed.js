@@ -288,7 +288,7 @@ async function main() {
         await mapData.createMap(map6);
         await userData.createUser(testUser);
     } catch(e){
-        throw e;
+        console.log("seed runs error: "+e);
     }
 }
 
