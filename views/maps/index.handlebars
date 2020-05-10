@@ -30,19 +30,21 @@
 </div>
 
 <div id="game-functions" hidden>
-    
-    <form method="POST" id="defeat">
-        <button type="submit">Give Up :( and Get Solution</button>
-    </form >
-    {{#if ../loggedIn}}
-        <form method="POST" id="save">
-            <button type="submit">Save</button>
-        </form>
-        <form method="POST" id="load" action="/user/load">
-            <button type="submit">Load</button>
-        </form>
-    {{/if}}
-
+    <div>
+        <form method="POST" id="defeat">
+            <button type="submit">Give Up :(</button>
+        </form >
+    </div>
+    <div>
+        {{#if ../loggedIn}}
+            <form method="POST" id="save">
+                <button type="submit">Save</button>
+            </form>
+            <form method="POST" id="load" action="/user/load">
+                <button type="submit">Load</button>
+            </form>
+        {{/if}}
+    </div>
 </div>
 
 <div id = "solution" class = "solution" hidden>
