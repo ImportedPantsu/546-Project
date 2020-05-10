@@ -61,7 +61,6 @@ function generate(username) {
     }
     res.mapData = deepCopy(map);
 
-    console.log(res);
     return res;
 }
 
@@ -183,6 +182,8 @@ function getArr(c, r){
     }
 
 
-generate();
+let map = generate();
+
+console.log(map);
 
 module.exports = {generate};
