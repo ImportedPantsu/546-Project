@@ -105,7 +105,10 @@ if (staticForm) {
             $.ajax(requestConfig).then(function(responseMessage) {
                 return $(responseMessage)
             });
-            alert(`You Win!\nScore: ${score}`);
+            alert(`You Win!\nScore: ${score}`);            
+            document.getElementById("map").style = 'display:none;';
+            document.getElementById("game-functions").style = 'display:none;';
+            document.getElementById("solution").removeAttribute("hidden");
         }
     });
 }
@@ -116,7 +119,7 @@ if (defeatForm) {
         document.getElementById("map").style = 'display:none;';
         document.getElementById("game-functions").style = 'display:none;';
         document.getElementById("solution").removeAttribute("hidden");
-        confirm('Home?')
+        alert('Home?')
     });
 }
 
@@ -198,6 +201,6 @@ if(timeForm  ){
         let time = currnetTime.getTime() /1000 - startTime;
         time = Math.floor(time*100)/100;
         console.log(startTime+" :: "+time);
-        timeForm.showCurrentTime.value = time;
+        timeForm.showCurrentTime.value = time+" sec";
     })
 }
