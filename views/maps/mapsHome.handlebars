@@ -1,6 +1,12 @@
 <h2>Availble Maps</h2>
 <ul>
     {{#each maps}}
-        <li><a href="/maps/{{_id}}">{{_id}}</a></li>
+        <li><a href="/maps/{{_id}}">({{difficulty}}):  {{mapName}}</a></li>
     {{/each}}
 </ul>
+<form method="post" action="/maps/newMap">
+<label>
+    
+    <input type="submit" value="Add a Nem Random Map"> 
+</label>
+</form>

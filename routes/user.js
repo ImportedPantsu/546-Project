@@ -6,19 +6,28 @@ const mapData = data.maps
 const bcrypt = require('bcryptjs');
 
 router.post("/logout", async (req, res) => {
-    req.session.destroy();
-    res.render('home/index', 
-    {
-        maps: mapList,
-        title: "Sudoku Paradise",
-        style: '../../public/css/home.css',
-        loginError: false,
-    }); 
+    try {
+        req.session.destroy();
+        res.render('home/index', 
+        {
+            maps: mapList,
+            title: "Sudoku Paradise",
+            style: '../../public/css/home.css',
+            loginError: false,
+        }); 
+    }catch(e){
+        console.log("logout error: "+e);
+        res.redirect("/");
+    }
 });
 
 router.post("/login", async (req, res) => {
-    mapList = await mapData.getAllMaps();
-    if(!req.body.username || !req.body.username) {
+    try{
+        mapList = await mapData.getAllMaps();
+    }catch(e){
+        console.log("login getMap error: "+e);
+    }
+    if(!req.body.username || !req.body.password) {
         res.render('home/index', 
         {
             maps: mapList,
@@ -28,6 +37,7 @@ router.post("/login", async (req, res) => {
         });
         return;
     }
+    req.body.username = req.body.username.trim();
     try{
         let user;        
         // console.log("05/09/2020 lin 0");
@@ -101,10 +111,12 @@ router.post("/create", async (req, res) => {
 
 router.post("/save", async (req, res) => {
     let {time, mapId, mapData, completed} = req.body;
+
     if(req.session.user){
         let username = req.session.user.username;
         userData.saveGame(username, mapId, mapData, time, completed);
     }
+
     res.render('home/index', 
     {
         maps: mapList,
@@ -116,7 +128,13 @@ router.post("/save", async (req, res) => {
 
 router.post("/load", async (req, res) => {
     let {mapId} = req.body;
-    let username = req.session.user.username;
+    let username = "visiter";
+    try{        
+        username = req.session.user.username;
+    }
+    catch(e){
+        console.log(e);
+    }
     savedGame = await userData.loadGame(username, mapId);
     if(savedGame===undefined) return;
     return res.json({

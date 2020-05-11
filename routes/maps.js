@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data/index")
+const generator = require("../data/generator");
 const mapData = data.maps;
 
 router.get("/", async (req, res) => {
-    mapList = await mapData.getAllMaps();
+    try{            
+        mapList = await mapData.getAllMaps();
+    }catch(e){
+        console.log("get map error: "+e);
+    }
     res.render('maps/mapsHome', 
         {
             maps: mapList,
@@ -51,6 +56,20 @@ router.post("/newScore", async (req, res) => {
         console.log(e); 
     }
     res.sendStatus("200")
+});
+
+router.post("/newMap", async (req, res) => {
+    let username =req.body.username;
+    let newMap = generator.generate(username);
+    try{
+        await mapData.createMap(newMap);
+    }
+    catch(e){
+        console.log("newMap error: "+e);
+        res.status(403).json({e});
+        return;
+    }
+    res.status(200).redirect("/maps");
 });
 
 module.exports = router;
