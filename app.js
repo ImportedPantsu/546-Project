@@ -24,10 +24,15 @@ app.use(
 
 
 app.use((req, res, next)=>{
-    const timeStamp = new Date().toUTCString();
-    let sta = "(Non-Authenticated User)";
-	if(req.session.user) sta = "(Authenticated "+req.session.user.username +")";
-    console.log("("+timeStamp+"): "+req.method+"   "+req.originalUrl+"   "+sta);
+    try{
+		const timeStamp = new Date().toUTCString();
+		let sta = "(Non-Authenticated User)";
+		if(req.session.user) sta = "(Authenticated "+req.session.user.username +")";
+		console.log("("+timeStamp+"): "+req.method+"   "+req.originalUrl+"   "+sta);
+	}
+	catch(e){
+		console.log("timeStamp error:"+e);
+	}
     next();
 })
 
@@ -38,7 +43,11 @@ try{
 	console.log(`Error: ${e}`)
 }
 
-configRoutes(app);
+try{
+	configRoutes(app);
+}catch(e){
+	console.log(e);
+}
 
 app.listen(3000, () => {
 	console.log("We've now got a server!");
