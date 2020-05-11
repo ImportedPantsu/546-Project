@@ -10,9 +10,14 @@ module.exports = {
     async getUser(username){
         if (typeof(username) != 'string') throw 'Username must be a string';
         if (!username) throw 'Must provide username';
-
-        const usersCollection = await users();
-        const user = await usersCollection.findOne({"username":username});
+        
+        let user=undefined;
+        try{
+            const usersCollection = await users();
+            user = await usersCollection.findOne({"username":username});
+        }catch(e){
+            console.log("get user error: "+ e);
+        }
         if (!user) throw "Error: No user found!";
         return user;
     },
@@ -33,9 +38,13 @@ module.exports = {
             hashedPassword: hash,
             savedMaps: {}
         };
-        
-        const usersCollection = await users();
-        const createdUser = await usersCollection.insertOne(newUser);
+        let createdUser = undefined;
+        try{
+            const usersCollection = await users();
+            createdUser = await usersCollection.insertOne(newUser);}
+        catch(e){
+            console.log("create user error:"+e);
+        }
         if (createdUser.insertedCount === 0) throw `Error: The following user could not be created: ${newUser}`;
         const addedId = createdUser.insertedId;
         return await this.getUser(user.username).catch(function(e) {
@@ -57,15 +66,15 @@ module.exports = {
         try{
             await mapFunctions.getMapById(mapId);
         } catch(e){
-            return e;
+            console.log("save game error: "+e);
         }
-        const usersCollection = await users();
         let newSaveData = {
                 mapData: mapData,
                 currentTime: time,
                 completed: completed
             }
         try{
+            const usersCollection = await users();
             const user = await this.getUser(username);
             let monogoField = `savedMaps.${mapId}`
             const savedMap = await usersCollection.updateOne({_id: user._id},{$set: {[monogoField]: newSaveData}});
