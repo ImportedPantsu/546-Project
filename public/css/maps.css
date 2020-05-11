@@ -57,7 +57,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-#check, #defeat button, #save button, #load button, #getCurrentTime, #showCurrentTime{
+#check, #defeat button, #save button, #load button, #getCurrentTime, #showCurrentTime, #mainPage button, #mapPage button{
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -74,10 +74,12 @@ input[type=number] {
   width: 192px;
   background-color: rgb(224, 199, 166);
 }
+
  #getCurrentTime, #showCurrentTime{
   width: 192px;
   background-color: rgb(224, 199, 166);
 }
+
 #showCurrentTime{
   height:16px
 }
@@ -110,6 +112,10 @@ input[type=number] {
 .solution{
     text-align: center;
     padding-bottom: 20px;
+}
+
+#mainPage button, #mapPage button{  
+  background-color: rgb(224, 199, 166);
 }
 
 .incorrect{
