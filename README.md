@@ -26,8 +26,8 @@ The site will be a place for users to learn about and play the game Sudoku. The 
 
 #### Extra Features 
   * Prompt when the user has completed the game
-  * Automatically map generator
-  * Also automatically judge the difficulties
+  * ~~Automatically map generator~~
+  * ~~Also automatically judge the difficulties~~
   * ~~Background music~~
   * Sandbox Design, share, and compete
   * Social Media sharing
