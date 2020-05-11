@@ -1,5 +1,5 @@
 function generate(username) {
-    if(!username) username = "map";
+    if(!username) username = "Map";
     let map = [];
     for(let i=1;i<=9;i++){
         let row = [];
