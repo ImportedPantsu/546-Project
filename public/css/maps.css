@@ -138,3 +138,6 @@ input[type=number] {
   border: 1px solid black;
   border-collapse: collapse;
 }
+#img1{
+  text-align: center;
+}
