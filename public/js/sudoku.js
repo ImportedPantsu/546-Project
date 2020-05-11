@@ -3,6 +3,7 @@ const staticForm = document.getElementById("static-form");
 const defeatForm = document.getElementById("defeat");
 const saveForm = document.getElementById("save");
 const loadForm = document.getElementById("load");
+let timeForm = document.getElementById("time");
 
 let mapId = window.location.href.split("/").slice(-1)[0];
 let startTime = 0;
@@ -188,4 +189,15 @@ if (loadForm) {
             }
         });
     });
+}
+
+if(timeForm  ){
+    timeForm.addEventListener("submit", event=>{
+        event.preventDefault();
+        let currnetTime = new Date();
+        let time = currnetTime.getTime() /1000 - startTime;
+        time = Math.floor(time*100)/100;
+        console.log(startTime+" :: "+time);
+        timeForm.showCurrentTime.value = time;
+    })
 }
