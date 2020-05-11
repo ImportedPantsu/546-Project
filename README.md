@@ -32,7 +32,7 @@ The site will be a place for users to learn about and play the game Sudoku. The 
   * Sandbox Design, share, and compete
   * Social Media sharing
   * A text or link built by the web page, which can be sent to social medias
-  * After finishing the user can have the choice to continue to a new game or go back to the menu
+  * ~~After finishing the user can have the choice to continue to a new game or go back to the menu~~
   * Finished games will have a unique label
   * Every click or prompt has a sound
   * Every user can save their own map collection

@@ -10,8 +10,10 @@ function generate(username) {
     }
     // console.log(map);
 
+    let postFixName = Math.round(Math.random()*1000)+"";
+
     let res = {
-        mapName: username+"::"+Math.random(),
+        mapName: username+"::"+postFixName,
         mapData: deepCopy(map),
         solution:deepCopy(map),
         difficulty: "easy",
@@ -55,7 +57,7 @@ function generate(username) {
     res.difficulty = difficultyChoice[difficulty];
 
     //and then the map
-    difficulty = (1+difficulty)*10;
+    difficulty = (3+difficulty)*10;
     for(let i=0;i<difficulty;i++){
         map[Math.floor(Math.random()*9)][Math.floor(Math.random()*9)] = null;
     }
