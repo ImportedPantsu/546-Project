@@ -45,7 +45,7 @@ function generate(username) {
         nums.splice(temp, 1);
     }
     for(let i=0;i<9;i++){
-        map[4][i] = mid[i];
+        map[i][i] = mid[i];
     }
     solveSudoku(map);
 
