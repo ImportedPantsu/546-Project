@@ -55,8 +55,25 @@ function generate(username) {
             nums.splice(temp, 1);
         }
         for(let i=0;i<9;i++){
-            map[i][i] = mid[i];
+            map[i][0] = mid[i];
         }
+
+        //I want to put a second seed but it usually becomes unsolutable
+        // mid = [];
+        // nums = [1,2,3];
+        // for(let i=0;i<3;i++){
+        //     let temp = Math.floor(Math.random()*(nums.length));
+        //     if(nums[temp]==map[i][0]){
+        //         if(temp==0) temp++;
+        //         else temp--; 
+        //     }
+        //     mid.push(nums[temp]);
+        //     nums.splice(temp, 1);
+        // }
+        // for(let i=0;i<3;i++){
+        //     map[8][i] = mid[i];
+        // }
+
         flag = solveSudoku(map);
     }
     res.solution = deepCopy(map);
@@ -67,6 +84,7 @@ function generate(username) {
     res.difficulty = difficultyChoice[difficulty];
 
     //and then the map
+    map[1][1] = null;
     difficulty = (3+difficulty)*10;
     for(let i=0;i<difficulty;i++){
         map[Math.floor(Math.random()*9)][Math.floor(Math.random()*9)] = null;
@@ -105,7 +123,7 @@ function deepCopy(map){
     for(let i=0;i<map.length;i++){
         let temp= [];
         for(let j=0;j<map[i].length;j++){
-            temp.push(map[i][j]);
+            temp.push(map[j][i]);
         }
         res.push(temp);
     }
@@ -164,7 +182,11 @@ function DFS( board,  i,  j,  histr,  histc,  histb)
             return false;
         }
     }
-    if(j == 9)
+    if(j == 9 )
+    {
+        return DFS(board, i+1, 8, histr, histc, histb);
+    }
+    if(j <0 )
     {
         return DFS(board, i+1, 0, histr, histc, histb);
     }
@@ -174,7 +196,12 @@ function DFS( board,  i,  j,  histr,  histc,  histb)
         //   histr[i][v]++;
         //   histc[j][v]++;
         //  histb[(i/3)*3+(j/3)][v]++;
-        return DFS(board, i, j+1, histr, histc, histb);
+        if(i%2==0){
+            return DFS(board, i, j+1, histr, histc, histb);
+        }            
+        else {            
+            return DFS(board, i, j-1, histr, histc, histb);
+        }
     }
     for(let v = 1; v <= 9; v++)
     {
@@ -183,9 +210,15 @@ function DFS( board,  i,  j,  histr,  histc,  histb)
         histr[i][v]++;
         histc[j][v]++;
         histb[Math.floor(i/3)*3+Math.floor(j/3)][v]++;
-        if(DFS(board, i, j+1, histr, histc, histb))
-            return true;
-        
+       
+        if(i%2==0){ 
+            if(DFS(board, i, j+1, histr, histc, histb))
+                return true;
+        }            
+        else {            
+            if(DFS(board, i, j-1, histr, histc, histb)) 
+                return true;
+        }
         histr[i][v]--;
         histc[j][v]--;
         histb[Math.floor(i/3)*3+Math.floor(j/3)][v]--;
@@ -197,6 +230,6 @@ function DFS( board,  i,  j,  histr,  histc,  histb)
 
 let map = generate();
 
-// console.log(map);
+console.log(map);
 
 module.exports = {generate};
