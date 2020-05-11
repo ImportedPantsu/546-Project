@@ -230,6 +230,6 @@ function DFS( board,  i,  j,  histr,  histc,  histb)
 
 let map = generate();
 
-console.log(map);
+// console.log(map);
 
 module.exports = {generate};

@@ -35,7 +35,11 @@ function checkScoreBoard(score, username = 'Anon'){
                     scoreData: newScore
                 })
             };
-            $.ajax(requestConfig).then(function(responseMessage) {});
+            try{
+                $.ajax(requestConfig).then(function(responseMessage) {});}
+            catch(e){
+                console.log("AJAX error: "+e);
+            }
             return;
         }
 
@@ -102,9 +106,13 @@ if (staticForm) {
                     completed: true
                 })
             };
-            $.ajax(requestConfig).then(function(responseMessage) {
-                return $(responseMessage)
-            });
+            try{
+                $.ajax(requestConfig).then(function(responseMessage) {
+                    return $(responseMessage)
+                });
+            }catch(e){
+                console.log("AJAX error: "+e);
+            }
             alert(`You Win!\nScore: ${score}`);            
             document.getElementById("map").style = 'display:none;';
             document.getElementById("game-functions").style = 'display:none;';
@@ -157,9 +165,14 @@ if(saveForm) {
                 completed: false
             })
         };
-        $.ajax(requestConfig).then(function(responseMessage) {
-            return $(responseMessage)
-        });
+        try{
+            $.ajax(requestConfig).then(function(responseMessage) {
+                return $(responseMessage)
+            });
+        }
+        catch(e){
+            console.log("AJAX error: saving... "+e);
+        }
     });
 }
 
@@ -176,21 +189,25 @@ if (loadForm) {
                 mapId: mapId
             })
         };
-        $.ajax(requestConfig).then(function(responseMessage) {
-            let loadedData = $(responseMessage)[0]['mapData'];
-            let loadedTime = $(responseMessage)[0]['time']; 
-            startTime = startTime - loadedTime 
-            console.log(startTime)
-            for(let i = 0; i < 8; i++){
-                for(let j = 0; j < 8; j++){
-                    let element = document.getElementById(`${i}:${j}`);
-                    let savedCell = loadedData[i][j];
-                    if (element.classList.contains("input-cell")){
-                        element.value = savedCell;
+        try{
+            $.ajax(requestConfig).then(function(responseMessage) {
+                let loadedData = $(responseMessage)[0]['mapData'];
+                let loadedTime = $(responseMessage)[0]['time']; 
+                startTime = startTime - loadedTime 
+                console.log(startTime)
+                for(let i = 0; i < 8; i++){
+                    for(let j = 0; j < 8; j++){
+                        let element = document.getElementById(`${i}:${j}`);
+                        let savedCell = loadedData[i][j];
+                        if (element.classList.contains("input-cell")){
+                            element.value = savedCell;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }catch(e){
+            console.log("AJAX error: loading... "+e);
+        }
     });
 }
 
