@@ -4,6 +4,7 @@ const data = require("../data/index");
 const userData = data.user
 const mapData = data.maps
 const bcrypt = require('bcryptjs');
+const xss = require('xss');
 
 router.post("/logout", async (req, res) => {
     try {
@@ -27,7 +28,9 @@ router.post("/login", async (req, res) => {
     }catch(e){
         console.log("login getMap error: "+e);
     }
-    if(!req.body.username || !req.body.password) {
+    let username = xss(req.body.username);
+    let password = xss(req.body.password);
+    if(!username || !password) {
         res.render('home/index', 
         {
             maps: mapList,
@@ -37,13 +40,13 @@ router.post("/login", async (req, res) => {
         });
         return;
     }
-    req.body.username = req.body.username.trim();
+    username = username.trim();
     try{
         let user;        
         // console.log("05/09/2020 lin 0");
         //username is a string, but not in the database.
         try{
-            user = await userData.getUser(req.body.username);
+            user = await userData.getUser(username);
         }
         catch(e){
             // console.log("05/09/2020 lin 1");
@@ -57,7 +60,7 @@ router.post("/login", async (req, res) => {
             return;
         }
         // console.log("05/09/2020 lin 2");
-        let match = await bcrypt.compare(req.body.password, user.hashedPassword);
+        let match = await bcrypt.compare(password, user.hashedPassword);
         
         if (match){
             let userInfo = {};
@@ -102,7 +105,12 @@ router.get("/new", async (req, res) => {
 router.post("/create", async (req, res) => {
     try {
         // console.log("create trying");
-        let createdUser = await userData.createUser(req.body);
+        let info = {
+            username: xss(req.body.username),
+            password: xss(req.body.password),
+            email:xss(req.body.email)
+        }
+        let createdUser = await userData.createUser(info);
         if(!createdUser){
             res.render('newUser/index', 
             {
@@ -127,8 +135,22 @@ router.post("/create", async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
-    let {time, mapId, mapData, completed} = req.body;
-
+    // let {time, mapId, mapData, completed} = req.body;
+    let time = xss(req.body.time);
+    let mapId = xss(req.body.mapId);
+    let completed = xss(req.body.completed);
+    let mapData = [];
+    if (!Array.isArray(req.body.mapData)) throw "Map data must be an array of arrays";
+        req.body.mapData.forEach(element => {
+            if(!Array.isArray(element)) throw "Map data must be an array of arrays";
+        });
+    for(let t=0;t<req.body.mapData.length;t++){
+        let temp = [];
+        for(let s=0;s<req.body.mapData[t].length;s++){
+            temp.push(xss(req.body.mapData[t][s]));
+        }
+        mapData.push(temp);
+    }
     try{
         if(req.session.user){
             let username = req.session.user.username;
@@ -149,7 +171,7 @@ router.post("/save", async (req, res) => {
 });
 
 router.post("/load", async (req, res) => {
-    let {mapId} = req.body;
+    let mapId = xss(req.body.mapId);
     let username = "Anon";
     try{        
         username = req.session.user.username;
