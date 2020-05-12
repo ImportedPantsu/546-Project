@@ -23,7 +23,12 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     let map;
     try{
-        map = await mapData.getMapById(req.params.id);
+        let id = xss(req.params.id);
+        if(!id){
+            redirect("maps");
+            return;
+        }
+        map = await mapData.getMapById(id);
     } catch{
         res.render('maps/invalid', 
         {
@@ -54,6 +59,7 @@ router.post("/newScore", async (req, res) => {
         // let {mapId, scoreData} = req.body;
         let mapId = xss(req.body.mapId);
         let scoreData = xss(req.body.scoreData);
+        if(!mapId || !scoreData) {res.sendStatus("403");return;}
         await mapData.addNewScore(mapId, scoreData);
     } catch (e){
         console.log(e); 
@@ -64,6 +70,7 @@ router.post("/newScore", async (req, res) => {
 router.post("/newMap", async (req, res) => {
     try{
         let username =xss(req.body.username);
+        if(!username) username = "Map";
         let newMap = generator.generate(username);
         await mapData.createMap(newMap);
     }
