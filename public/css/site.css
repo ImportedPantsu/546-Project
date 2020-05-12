@@ -119,3 +119,7 @@ h1, h2, p, #display-username, a{
 label{
   color:white;
 }
+
+footer{
+  margin-top: 25px;
+}
