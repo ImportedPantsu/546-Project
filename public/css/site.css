@@ -6,7 +6,7 @@ body {
 }
 
 .topnav {
-  height: 80px;
+  height: 100px;
   display: flex;
   background-color: rgb(65, 62, 62);
   overflow: hidden;
@@ -79,8 +79,9 @@ body {
 }
 
 #error{
+  align-self: flex-start;
   position: absolute;
-  right: 229px;
+  right: 60px;
   color: #ff8585;
 }
 
