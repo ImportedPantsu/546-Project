@@ -53,3 +53,9 @@ input[type=submit]:hover {
   #img1{
     text-align: center;
   }
+
+  .error{
+      color: crimson;
+      text-decoration: underline;
+      text-align: center;
+  }

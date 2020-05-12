@@ -93,6 +93,7 @@ router.post("/login", async (req, res) => {
 router.get("/new", async (req, res) => {
     res.render('newUser/index', 
     {
+        withError: false,
         title: "Sudoku Paradise",
         style: '../../public/css/newUser.css',
     }); 
@@ -100,12 +101,28 @@ router.get("/new", async (req, res) => {
 
 router.post("/create", async (req, res) => {
     try {
+        // console.log("create trying");
         let createdUser = await userData.createUser(req.body);
+        if(!createdUser){
+            res.render('newUser/index', 
+            {
+                withError:true,
+                title: "Sudoku Paradise",
+                style: '../../public/css/newUser.css',
+            });
+            return;
+        }
         console.log(createdUser)
         req.session.user = createdUser;
         res.redirect("/home")
     } catch (e){
         console.log(e);
+        res.render('newUser/index', 
+        {
+            withError:true,
+            title: "Sudoku Paradise",
+            style: '../../public/css/newUser.css',
+        });
     }
 });
 
