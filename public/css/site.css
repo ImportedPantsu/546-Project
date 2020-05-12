@@ -54,12 +54,12 @@ body {
 #error{
   position: absolute;
   right: 229px;
-  color: red;
+  color: #ff8585;
 }
 
 #newUser a{
   position: absolute;
-  color: rgb(76, 175, 167);
+  color: rgb(122, 228, 219);
   right: 267px;
   font-size: 12px;
   bottom: 2px;
