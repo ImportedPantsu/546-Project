@@ -8,22 +8,22 @@
     </head>
     <h1>Sudoku Paradise 
         <button type="submit" id="music" onclick="javascript:togglePlay();">
-            <img src = "../public/js/Speaker.png" alt="Italics"/>
+            <img src = "../public/images/Speaker.png" alt="Italics"/>
         </button>
-        <audio id="audio"><source src ="../public/js/Minecraft.mp3" type="audio/mp3"> Browser does not support audio format</audio>
+        <audio id="audio"><source src ="../public/audio/Minecraft.mp3" type="audio/mp3"> Browser does not support audio format</audio>
         <script defer src = '../public/js/music.js'></script>
     </h1>
     <div class="topnav">
         <a href="/">Home</a>
         <a href="/maps">Maps</a>
         <a href="/tutorial">Tutorial</a>
-        <p id="rules-tag">
+        <p>
             <head>
-                <link href = "../public/css/tuts.css" rel = "stylesheet">
-                <script defer src = '../public/js/tuts.js'></script>
+                <link href = "../public/css/rules.css" rel = "stylesheet">
+                <script defer src = '../public/js/rules.js'></script>
             </head>
             <body>
-                <button class = "tut_btn" data-modal-target="#modal"> Tuts</button>
+                <button class = "rule_btn" data-modal-target="#modal">Rules</button>
                 <div class="modal" id="modal">
                     <div class = "modal-header">
                         <div class = "title"> How To Play Sudoku</div>
@@ -31,11 +31,11 @@
                     </div>
                     <div class= "Modal body">
                         <h2 class="Goal">Goal</h2>
-                        <p class = "Goal_text">The Goal is to fill in all the empty cells on the board with the correct numbers.</p>
+                        <p class = "Goal_text">The goal is to fill in all the empty cells on the board with the correct numbers.</p>
                         <h2 class= "Rules">Rules</h2>
-                        <p class = "Rules_text">Cells each take a number between 1 and 9. A number may only appear once in a single row, column or three-by-three box</p>
+                        <p class = "Rules_text">Each cell takes a number between 1 and 9. A number may only appear once in a single row, column or three-by-three box</p>
                         <h2 class = "how_play">How To Play</h2>
-                        <p class ="play">Click a cell to select it. Then click a number in the button bar to set or clear the number for the selected cell.</p> 
+                        <p class ="play">Click a cell to select it. Then type a number into the cell. Once you are finished click the submit button to check your answers</p> 
                         </div>
                 </div>
                 <div id="overlay"></div>
@@ -48,7 +48,7 @@
                 <label><button type="submit">Logout</button></label>
             </form>
         </div>
-        <div id="username">Hello {{user.username}}!</div>
+        <div id="disply-username">Hello {{user.username}}!</div>
         {{/if}}
         {{#unless user}}
         {{#if loginError}}
@@ -56,13 +56,19 @@
         {{/if}}
         <div id="login">
             <form method="POST" id="login-form" action="/user/login">
-                <label>username:<input name="username" placeholder="username"></label>
-                <label>password:<input name="password" placeholder="password"></label>
-                <label><button type = "submit">Submit</button></label>                
+                <div id="username-div">
+                    <label for="username">Username:</label>
+                    <input id="username" name="username" placeholder="username">
+                </div>
+                <div id="password-div">
+                    <label for="password">Password:</label>
+                    <input id="password" name="password" placeholder="password">
+                </div>
+                <div>
+                    <button type = "submit">Login</button>
+                    <a id="newUser" href="/user/new">New here? Create an account!</a>
+                </div>              
             </form>
-        </div>
-        <div id="newUser">
-            <a href="/user/new">New here? Create an account!</a>
         </div>
         {{/unless}}
     </div> 

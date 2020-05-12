@@ -6,18 +6,31 @@ body {
 }
 
 .topnav {
+  height: 80px;
+  display: flex;
   background-color: rgb(65, 62, 62);
   overflow: hidden;
   position: relative;
+  
 }
 
-.topnav>a, .topnav>p{
-  float: left;
+.topnav>a{
+  align-self: flex-end;
+}
+
+.topnav>p>button{
+  position: absolute;
+  bottom: 0px;
+}
+
+.topnav>a{
   color: #f2f2f2;
   text-align: center;
+  height: 19px;
   padding: 18px 22px;
   text-decoration: none;
   font-size: 19px;
+  margin: 0px;
 }
 
 .topnav a:hover,  .topnav p:hover{
@@ -30,24 +43,38 @@ body {
   color: white;
 }
 
-#username{
-  float: right;
-  padding-top: 19px;
-  color: white;
-  font-size: large;
-  padding-right: 10px;
+#username-div, #password-div {
+  margin-bottom: 5px;
 }
 
-#logout{
+#password{
+  margin-left: 3.5px;
+}
+
+#username, #password{
+  width: 168px;
+  height: 17px;
+}
+
+#logout, #disply-username{
   padding-top: 19px;
   float: right;
   padding-right: 8px;
+  right: 0px;
+  position: absolute;
+  align-self: flex-end;
+  padding-bottom: 18px;
+}
+
+#disply-username{
+  margin-right: 65px;
+  color: white;
 }
 
 #login{
   display: inline-block;
   position: absolute;
-  top: 17px;
+  bottom: 4px;
   right: 10px;
 }
 
@@ -57,13 +84,11 @@ body {
   color: #ff8585;
 }
 
-#newUser a{
-  position: absolute;
+#newUser{
   color: rgb(122, 228, 219);
-  right: 267px;
   font-size: 12px;
-  bottom: 2px;
 }
+
 
 h1{
   padding: 8px;
@@ -86,7 +111,7 @@ h1 button img{
   vertical-align: bottom;
 }
 
-h1, h2, p, #username, a{
+h1, h2, p, #display-username, a{
   font-family: Arial, Helvetica, sans-serif;
 }
 

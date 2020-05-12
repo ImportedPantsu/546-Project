@@ -3,7 +3,7 @@
   justify-content: center;
 }
 
-h2,#mapList{
+body > h2,#mapList{
   margin-left: 8px;
 }
 
@@ -50,7 +50,7 @@ h2,#mapList{
   background-color: rgb(224, 199, 166);
 }
 
-h2{
+body > h2{
   text-align: justify;
 }
 
