@@ -1,13 +1,16 @@
 # Instruction to Sudoku Paradise
+
+* https://github.com/ImportedPantsu/546-Project.git(https://github.com/ImportedPantsu/546-Project.git)
+
 * npm install
 * npm start
 
 * on the page of localhost:3000 you can visit or login.
-** localhost:3000
+> localhost:3000
 
 * inititial username: "fake" password: "password"
-** fake
-** password
+> fake
+> password
 
 * or create account by unique "username" and "email" and a password.
 
