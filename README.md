@@ -24,6 +24,8 @@
 
 * unsuccessful submition will return to the game.
 
+* if you are not logged in, and successfully submit the game, your name will be recorded as "Anon" into scoretable
+
 * if you want to know how long you spend on this map, click on time button.
 
 * save/load functions are based on AJAX.
