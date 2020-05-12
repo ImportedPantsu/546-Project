@@ -11,7 +11,7 @@
 h2{
     text-decoration: underline;
 }
-.info-block p, h2{
+.info-block p, .info-block h2{
     color: white;
     text-align: center;
     padding-left: 25px;
@@ -48,4 +48,14 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: #45a049;
+  }
+
+  #img1{
+    text-align: center;
+  }
+
+  .error{
+      color: crimson;
+      text-decoration: underline;
+      text-align: center;
   }

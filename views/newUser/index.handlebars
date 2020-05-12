@@ -18,6 +18,18 @@
         <label for="contact">Email:</label>
         <input type="email" id="contact" name="email" placeholder="Email">
 
-        <input type="submit" value="Submit">
+        <label><input type="submit" value="Submit"></label>
     </form>
 </div>
+
+{{#if withError}}
+    <div class="error">
+        Error: invalid username or email-address!
+    </div>
+{{/if}}
+
+<div id="newUserError" hidden class="error">
+    invalid user account!
+</div>
+
+<script src='../public/js/newUser.js'></script>

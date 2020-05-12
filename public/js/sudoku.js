@@ -3,6 +3,7 @@ const staticForm = document.getElementById("static-form");
 const defeatForm = document.getElementById("defeat");
 const saveForm = document.getElementById("save");
 const loadForm = document.getElementById("load");
+let timeForm = document.getElementById("time");
 
 let mapId = window.location.href.split("/").slice(-1)[0];
 let startTime = 0;
@@ -34,7 +35,11 @@ function checkScoreBoard(score, username = 'Anon'){
                     scoreData: newScore
                 })
             };
-            $.ajax(requestConfig).then(function(responseMessage) {});
+            try{
+                $.ajax(requestConfig).then(function(responseMessage) {});}
+            catch(e){
+                console.log("AJAX error: "+e);
+            }
             return;
         }
 
@@ -101,10 +106,17 @@ if (staticForm) {
                     completed: true
                 })
             };
-            $.ajax(requestConfig).then(function(responseMessage) {
-                return $(responseMessage)
-            });
-            alert(`You Win!\nScore: ${score}`);
+            try{
+                $.ajax(requestConfig).then(function(responseMessage) {
+                    return $(responseMessage)
+                });
+            }catch(e){
+                console.log("AJAX error: "+e);
+            }
+            alert(`You Win!\nScore: ${score}`);            
+            document.getElementById("map").style = 'display:none;';
+            document.getElementById("game-functions").style = 'display:none;';
+            document.getElementById("solution").removeAttribute("hidden");
         }
     });
 }
@@ -115,7 +127,7 @@ if (defeatForm) {
         document.getElementById("map").style = 'display:none;';
         document.getElementById("game-functions").style = 'display:none;';
         document.getElementById("solution").removeAttribute("hidden");
-        confirm('Home?')
+        alert('Home?')
     });
 }
 
@@ -153,9 +165,14 @@ if(saveForm) {
                 completed: false
             })
         };
-        $.ajax(requestConfig).then(function(responseMessage) {
-            return $(responseMessage)
-        });
+        try{
+            $.ajax(requestConfig).then(function(responseMessage) {
+                return $(responseMessage)
+            });
+        }
+        catch(e){
+            console.log("AJAX error: saving... "+e);
+        }
     });
 }
 
@@ -172,20 +189,35 @@ if (loadForm) {
                 mapId: mapId
             })
         };
-        $.ajax(requestConfig).then(function(responseMessage) {
-            let loadedData = $(responseMessage)[0]['mapData'];
-            let loadedTime = $(responseMessage)[0]['time']; 
-            startTime = startTime - loadedTime 
-            console.log(startTime)
-            for(let i = 0; i < 8; i++){
-                for(let j = 0; j < 8; j++){
-                    let element = document.getElementById(`${i}:${j}`);
-                    let savedCell = loadedData[i][j];
-                    if (element.classList.contains("input-cell")){
-                        element.value = savedCell;
+        try{
+            $.ajax(requestConfig).then(function(responseMessage) {
+                let loadedData = $(responseMessage)[0]['mapData'];
+                let loadedTime = $(responseMessage)[0]['time']; 
+                startTime = startTime - loadedTime 
+                console.log(startTime)
+                for(let i = 0; i < 8; i++){
+                    for(let j = 0; j < 8; j++){
+                        let element = document.getElementById(`${i}:${j}`);
+                        let savedCell = loadedData[i][j];
+                        if (element.classList.contains("input-cell")){
+                            element.value = savedCell;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }catch(e){
+            console.log("AJAX error: loading... "+e);
+        }
     });
+}
+
+if(timeForm  ){
+    timeForm.addEventListener("submit", event=>{
+        event.preventDefault();
+        let currnetTime = new Date();
+        let time = currnetTime.getTime() /1000 - startTime;
+        time = Math.floor(time*100)/100;
+        console.log(startTime+" :: "+time);
+        timeForm.showCurrentTime.value = time+" sec";
+    })
 }

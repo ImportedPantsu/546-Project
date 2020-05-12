@@ -40,3 +40,28 @@ h2,#mapList{
     vertical-align: top;
     padding-bottom: 1px;
 }
+
+#addNewMap button{
+  margin-left: auto;
+  margin-right: auto;
+  width: 380px;
+  height: 20px;
+  border-radius: 12px;  
+  background-color: rgb(224, 199, 166);
+}
+
+h2{
+  text-align: justify;
+}
+
+#mapList{
+  text-align: center;
+}
+
+#addNewMap{
+  text-align: justify;
+}
+
+#img1{
+  text-align: center;
+}

@@ -49,8 +49,8 @@ router.get("/:id", async (req, res) => {
 
 
 router.post("/newScore", async (req, res) => {
-    let {mapId, scoreData} = req.body;
     try{
+        let {mapId, scoreData} = req.body;
         await mapData.addNewScore(mapId, scoreData);
     } catch (e){
         console.log(e); 
@@ -59,9 +59,9 @@ router.post("/newScore", async (req, res) => {
 });
 
 router.post("/newMap", async (req, res) => {
-    let username =req.body.username;
-    let newMap = generator.generate(username);
     try{
+        let username =req.body.username;
+        let newMap = generator.generate(username);
         await mapData.createMap(newMap);
     }
     catch(e){

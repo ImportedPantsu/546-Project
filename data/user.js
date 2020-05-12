@@ -10,9 +10,29 @@ module.exports = {
     async getUser(username){
         if (typeof(username) != 'string') throw 'Username must be a string';
         if (!username) throw 'Must provide username';
+        
+        let user=undefined;
+        try{
+            const usersCollection = await users();
+            user = await usersCollection.findOne({"username":username});
+        }catch(e){
+            console.log("get user error: "+ e);
+        }
+        if (!user) throw "Error: No user found!";
+        return user;
+    },
 
-        const usersCollection = await users();
-        const user = await usersCollection.findOne({"username":username});
+    async getUserByEmail(username){
+        if (typeof(username) != 'string') throw 'Email must be a string';
+        if (!username) throw 'Must provide Email';
+        
+        let user=undefined;
+        try{
+            const usersCollection = await users();
+            user = await usersCollection.findOne({"email":username});
+        }catch(e){
+            console.log("get user error: "+ e);
+        }
         if (!user) throw "Error: No user found!";
         return user;
     },
@@ -23,6 +43,24 @@ module.exports = {
         if (typeof(user.email) != 'string') throw "Error: Email must be a string";
         if (typeof(user.username) != 'string') throw "Username must be a string";
         if (typeof(user.password) != 'string') throw "Password must be a string";
+            //check unique email
+            try{
+                //  console.log(user.email+""+user.username);
+                 let try1 = await this.getUserByEmail(user.email);
+                //  console.log(try1);
+                 return;
+            }catch(e){
+
+            }
+            //check qunique username
+            try{
+                // console.log(user.email+""+user.username);;
+                let try2 = await this.getUser(user.username);
+                // console.log(try2);
+                return;
+           }catch(e){
+
+           }
 
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(user.password, salt);
@@ -33,9 +71,14 @@ module.exports = {
             hashedPassword: hash,
             savedMaps: {}
         };
-        
-        const usersCollection = await users();
-        const createdUser = await usersCollection.insertOne(newUser);
+        let createdUser = undefined;
+        try{
+            const usersCollection = await users();
+            
+            createdUser = await usersCollection.insertOne(newUser);}
+        catch(e){
+            console.log("create user error:"+e);
+        }
         if (createdUser.insertedCount === 0) throw `Error: The following user could not be created: ${newUser}`;
         const addedId = createdUser.insertedId;
         return await this.getUser(user.username).catch(function(e) {
@@ -57,15 +100,15 @@ module.exports = {
         try{
             await mapFunctions.getMapById(mapId);
         } catch(e){
-            return e;
+            console.log("save game error: "+e);
         }
-        const usersCollection = await users();
         let newSaveData = {
                 mapData: mapData,
                 currentTime: time,
                 completed: completed
             }
         try{
+            const usersCollection = await users();
             const user = await this.getUser(username);
             let monogoField = `savedMaps.${mapId}`
             const savedMap = await usersCollection.updateOne({_id: user._id},{$set: {[monogoField]: newSaveData}});

@@ -93,6 +93,7 @@ router.post("/login", async (req, res) => {
 router.get("/new", async (req, res) => {
     res.render('newUser/index', 
     {
+        withError: false,
         title: "Sudoku Paradise",
         style: '../../public/css/newUser.css',
     }); 
@@ -100,21 +101,42 @@ router.get("/new", async (req, res) => {
 
 router.post("/create", async (req, res) => {
     try {
+        // console.log("create trying");
         let createdUser = await userData.createUser(req.body);
+        if(!createdUser){
+            res.render('newUser/index', 
+            {
+                withError:true,
+                title: "Sudoku Paradise",
+                style: '../../public/css/newUser.css',
+            });
+            return;
+        }
         console.log(createdUser)
         req.session.user = createdUser;
         res.redirect("/home")
     } catch (e){
         console.log(e);
+        res.render('newUser/index', 
+        {
+            withError:true,
+            title: "Sudoku Paradise",
+            style: '../../public/css/newUser.css',
+        });
     }
 });
 
 router.post("/save", async (req, res) => {
     let {time, mapId, mapData, completed} = req.body;
 
-    if(req.session.user){
-        let username = req.session.user.username;
-        userData.saveGame(username, mapId, mapData, time, completed);
+    try{
+        if(req.session.user){
+            let username = req.session.user.username;
+            userData.saveGame(username, mapId, mapData, time, completed);
+        }
+    }
+    catch(e){
+        console.log("save error: "+e);
     }
 
     res.render('home/index', 
@@ -128,14 +150,14 @@ router.post("/save", async (req, res) => {
 
 router.post("/load", async (req, res) => {
     let {mapId} = req.body;
-    let username = "visiter";
+    let username = "Anon";
     try{        
         username = req.session.user.username;
+        savedGame = await userData.loadGame(username, mapId);
     }
     catch(e){
         console.log(e);
     }
-    savedGame = await userData.loadGame(username, mapId);
     if(savedGame===undefined) return;
     return res.json({
         mapData: savedGame.mapData,

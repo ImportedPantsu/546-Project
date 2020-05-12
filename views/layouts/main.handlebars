@@ -8,7 +8,7 @@
     </head>
     <h1>Sudoku Paradise 
         <button type="submit" id="music" onclick="javascript:togglePlay();">
-            <img src = "../public/js/Speaker.png"/>
+            <img src = "../public/js/Speaker.png" alt="Italics"/>
         </button>
         <audio id="audio"><source src ="../public/js/Minecraft.mp3" type="audio/mp3"> Browser does not support audio format</audio>
         <script defer src = '../public/js/music.js'></script>
@@ -17,7 +17,7 @@
         <a href="/">Home</a>
         <a href="/maps">Maps</a>
         <a href="/tutorial">Tutorial</a>
-        <a id="rules-tag">
+        <p id="rules-tag">
             <head>
                 <link href = "../public/css/tuts.css" rel = "stylesheet">
                 <script defer src = '../public/js/tuts.js'></script>
@@ -40,12 +40,12 @@
                 </div>
                 <div id="overlay"></div>
             </body>
-        </a>
+        </p>
 
         {{#if user}}
         <div id="logout">
             <form  method="POST" id="logout-form" action="/user/logout">
-                <button type="submit">Logout</button>
+                <label><button type="submit">Logout</button></label>
             </form>
         </div>
         <div id="username">Hello {{user.username}}!</div>
@@ -56,9 +56,9 @@
         {{/if}}
         <div id="login">
             <form method="POST" id="login-form" action="/user/login">
-                <input name="username" placeholder="username">
-                <input name="password" placeholder="password">
-                <button type = "submit">Submit</button>
+                <label>username:<input name="username" placeholder="username"></label>
+                <label>password:<input name="password" placeholder="password"></label>
+                <label><button type = "submit">Submit</button></label>                
             </form>
         </div>
         <div id="newUser">
@@ -70,4 +70,8 @@
         {{{body}}}
     </body>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <br>
+    <div id="img1" >
+        <a href="/" target="_blank"><img src="/public/images/adv2.jpg" alt="Italics"></a>
+    </div> 
 </html>

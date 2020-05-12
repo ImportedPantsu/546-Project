@@ -10,8 +10,10 @@ function generate(username) {
     }
     // console.log(map);
 
+    let postFixName = Math.round(Math.random()*1000)+"";
+
     let res = {
-        mapName: username+"::"+Math.random(),
+        mapName: username+"::"+postFixName,
         mapData: deepCopy(map),
         solution:deepCopy(map),
         difficulty: "easy",
@@ -35,18 +37,45 @@ function generate(username) {
     }
 
     // get the solution firstly
-    let mid = [];
-    let nums = [1,2,3,4,5,6,7,8,9]
-    for(let i=1;i<=9;i++){
-        let temp = Math.floor(Math.random()*(nums.length));
-        mid.push(nums[temp]);
-        nums.splice(temp, 1);
-    }
-    for(let i=0;i<9;i++){
-        map[4][i] = mid[i];
-    }
-    solveSudoku(map);
+    let flag = false;
+    while(!flag){
+        map = [];
+        for(let i=1;i<=9;i++){
+            let row = [];
+            for(let j=1;j<=9;j++){
+                row.push(0);
+            }
+            map.push(row);
+        }
+        let mid = [];
+        let nums = [1,2,3,4,5,6,7,8,9]
+        for(let i=1;i<=9;i++){
+            let temp = Math.floor(Math.random()*(nums.length));
+            mid.push(nums[temp]);
+            nums.splice(temp, 1);
+        }
+        for(let i=0;i<9;i++){
+            map[i][0] = mid[i];
+        }
 
+        //I want to put a second seed but it usually becomes unsolutable
+        // mid = [];
+        // nums = [1,2,3];
+        // for(let i=0;i<3;i++){
+        //     let temp = Math.floor(Math.random()*(nums.length));
+        //     if(nums[temp]==map[i][0]){
+        //         if(temp==0) temp++;
+        //         else temp--; 
+        //     }
+        //     mid.push(nums[temp]);
+        //     nums.splice(temp, 1);
+        // }
+        // for(let i=0;i<3;i++){
+        //     map[8][i] = mid[i];
+        // }
+
+        flag = solveSudoku(map);
+    }
     res.solution = deepCopy(map);
 
     //and then get the difficulty
@@ -55,7 +84,8 @@ function generate(username) {
     res.difficulty = difficultyChoice[difficulty];
 
     //and then the map
-    difficulty = (1+difficulty)*10;
+    map[1][1] = null;
+    difficulty = (3+difficulty)*10;
     for(let i=0;i<difficulty;i++){
         map[Math.floor(Math.random()*9)][Math.floor(Math.random()*9)] = null;
     }
@@ -93,7 +123,7 @@ function deepCopy(map){
     for(let i=0;i<map.length;i++){
         let temp= [];
         for(let j=0;j<map[i].length;j++){
-            temp.push(map[i][j]);
+            temp.push(map[j][i]);
         }
         res.push(temp);
     }
@@ -109,77 +139,93 @@ function getArr(c, r){
     return res;
 }
 
-    function solveSudoku(board) {
-        let histr = getArr(9, 10);
-        let histc = getArr(9, 10);
-        let histb = getArr(9, 10);
-        // console.log("histr"+histr);
-        // console.log("histc"+histc);
-        
-        for(let i = 0; i < 9; i++)
-            for(let j = 0; j < 9; j++)
-                if(board[i][j]!=0)
-                {
-                    let v = board[i][j];
-                    // console.log(v+" "+i+" "+j+"  "+Math.floor(i/3)*3+(j/3));
-        // console.log(histb);
-                    histr[i][v]++;
-                    histc[j][v]++;
-                    histb[Math.floor(i/3)*3+Math.floor(j/3)][v]++;
-                }
-        let res = DFS(board, 0, 0, histr, histc, histb);
-      //  System.out.println("res="+res);
-    }
+function solveSudoku(board) {
+    let histr = getArr(9, 10);
+    let histc = getArr(9, 10);
+    let histb = getArr(9, 10);
+    // console.log("histr"+histr);
+    // console.log("histc"+histc);
     
-    function DFS( board,  i,  j,  histr,  histc,  histb)
-    {
-        if(i == 8 && j == 8)
-        {
-            if(board[i][j]!=0){                
-                return true;
-            }
-            else
+    for(let i = 0; i < 9; i++)
+        for(let j = 0; j < 9; j++)
+            if(board[i][j]!=0)
             {
-                for(let v = 1; v <= 9; v++)
-                {
-                    if(histr[i][v] == 0 && histc[j][v] == 0 && histb[Math.floor(i/3)*3+Math.floor(j/3)][v] == 0)
-                    {
-                        board[i][j] = v;
-                        return true;
-                    }
-                }
-                return false;
+                let v = board[i][j];
+                // console.log(v+" "+i+" "+j+"  "+Math.floor(i/3)*3+(j/3));
+    // console.log(histb);
+                histr[i][v]++;
+                histc[j][v]++;
+                histb[Math.floor(i/3)*3+Math.floor(j/3)][v]++;
             }
+    let res = DFS(board, 0, 0, histr, histc, histb);
+    //  System.out.println("res="+res);
+    return res;
+}
+    
+function DFS( board,  i,  j,  histr,  histc,  histb)
+{
+    if(i == 8 && j == 8)
+    {
+        if(board[i][j]!=0){                
+            return true;
         }
-        if(j == 9)
+        else
         {
-            return DFS(board, i+1, 0, histr, histc, histb);
+            for(let v = 1; v <= 9; v++)
+            {
+                if(histr[i][v] == 0 && histc[j][v] == 0 && histb[Math.floor(i/3)*3+Math.floor(j/3)][v] == 0)
+                {
+                    board[i][j] = v;
+                    return true;
+                }
+            }
+            return false;
         }
-        if(board[i][j]!=0)
-        {
-         //   int v = board[i][j] - '0';
-         //   histr[i][v]++;
-         //   histc[j][v]++;
-          //  histb[(i/3)*3+(j/3)][v]++;
+    }
+    if(j == 9 )
+    {
+        return DFS(board, i+1, 8, histr, histc, histb);
+    }
+    if(j <0 )
+    {
+        return DFS(board, i+1, 0, histr, histc, histb);
+    }
+    if(board[i][j]!=0)
+    {
+        //   int v = board[i][j] - '0';
+        //   histr[i][v]++;
+        //   histc[j][v]++;
+        //  histb[(i/3)*3+(j/3)][v]++;
+        if(i%2==0){
             return DFS(board, i, j+1, histr, histc, histb);
+        }            
+        else {            
+            return DFS(board, i, j-1, histr, histc, histb);
         }
-        for(let v = 1; v <= 9; v++)
-        {
-            if(histr[i][v] == 1 || histc[j][v] == 1 || histb[Math.floor(i/3)*3+Math.floor(j/3)][v] == 1) continue;
-            board[i][j] = v;
-            histr[i][v]++;
-            histc[j][v]++;
-            histb[Math.floor(i/3)*3+Math.floor(j/3)][v]++;
+    }
+    for(let v = 1; v <= 9; v++)
+    {
+        if(histr[i][v] == 1 || histc[j][v] == 1 || histb[Math.floor(i/3)*3+Math.floor(j/3)][v] == 1) continue;
+        board[i][j] = v;
+        histr[i][v]++;
+        histc[j][v]++;
+        histb[Math.floor(i/3)*3+Math.floor(j/3)][v]++;
+       
+        if(i%2==0){ 
             if(DFS(board, i, j+1, histr, histc, histb))
                 return true;
-            
-            histr[i][v]--;
-            histc[j][v]--;
-            histb[Math.floor(i/3)*3+Math.floor(j/3)][v]--;
-            board[i][j] = 0;
+        }            
+        else {            
+            if(DFS(board, i, j-1, histr, histc, histb)) 
+                return true;
         }
-        return false;
+        histr[i][v]--;
+        histc[j][v]--;
+        histb[Math.floor(i/3)*3+Math.floor(j/3)][v]--;
+        board[i][j] = 0;
     }
+    return false;
+}
 
 
 let map = generate();

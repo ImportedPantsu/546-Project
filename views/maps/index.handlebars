@@ -5,7 +5,7 @@
         <form id = "start-form">
             <button type="submit" id="start">Start</button>
         </form>
-        <input id="savedMapId" value={{_id}} hidden>
+        <label><input id="savedMapId" value={{_id}} hidden></label>
     </div>
 </div>
 <span id='difficulty' hidden>{{difficulty}}</span>
@@ -19,7 +19,7 @@
                     <span class="cell" id = {{@../index}}:{{@index}}>{{this}}</span>
                 {{/if}}
                 {{#unless this}}
-                    <input id = {{@../index}}:{{@index}} class = "input-cell cell" type = "number" min = "1" max = "9">
+                    <label><input id = {{@../index}}:{{@index}} class = "input-cell cell" type = "number" min = "1" max = "9"></label>
                 {{/unless}}
             {{/each}}
             </div>
@@ -32,24 +32,30 @@
 <div id="game-functions" hidden>
     <div>
         <form method="POST" id="defeat">
-            <button type="submit">Give Up &#128522‬ to See Solution</button>
+            <label><button type="submit">Give Up &#128522‬ to See Solution</button></label>
         </form >
     </div>
     <div>
         {{#if ../loggedIn}}
             <form method="POST" id="save">
-                <button type="submit">Save</button>
+                <label><button type="submit">Save</button></label>
             </form>
             <form method="POST" id="load" action="/user/load">
-                <button type="submit">Load</button>
+                <label><button type="submit">Load</button></label>
             </form>
         {{/if}}
+    </div>
+    <div>
+        <form method="POST" id="time">
+            <button id="getCurrentTime" type="submit" style="float:left;">Time</button>
+            <label><input id="showCurrentTime" style="float:right;"></label>
+        </form>
     </div>
 </div>
 
 <div id = "solution" class = "solution" hidden>
     <h3>Solution</h3>
-    <div id = "table" class= "table">
+    <div id = "table2" class= "table">
         {{#each solution}}
             <div class="row">
             {{#each this}}
@@ -57,6 +63,19 @@
             {{/each}}
             </div>
         {{/each}}
+    </div>
+    <br>
+    <div>
+         <div>
+            <form method="get" id="mainPage" action="/">
+                <label><button type="submit">Back to Home Page!</button></label>
+            </form >
+        </div>
+        <div>
+            <form method="get" id="mapPage" action="/maps">
+                <label><button type="submit">Next New Game ></button></label>
+            </form >
+        </div>
     </div>
 </div>
 
