@@ -46,7 +46,7 @@ module.exports = {
             //check unique email
             try{
                 //  console.log(user.email+""+user.username);
-                 let try1 = await this.getUserByEmail(user.email);
+                 let try1 = await this.getUserByEmail(user.email.toLowerCase());
                 //  console.log(try1);
                  return;
             }catch(e){
