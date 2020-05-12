@@ -21,3 +21,15 @@
         <input type="submit" value="Submit">
     </form>
 </div>
+
+{{#if withError}}
+    <div class="error">
+        Error: invalid username or email-address!
+    </div>
+{{/if}}
+
+<div id="newUserError" hidden class="error">
+    invalid user account!
+</div>
+
+<script src='../public/js/newUser.js'></script>
