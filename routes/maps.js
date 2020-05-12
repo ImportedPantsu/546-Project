@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require("../data/index")
 const generator = require("../data/generator");
 const mapData = data.maps;
+const xss = require('xss');
 
 router.get("/", async (req, res) => {
     try{            
@@ -50,7 +51,9 @@ router.get("/:id", async (req, res) => {
 
 router.post("/newScore", async (req, res) => {
     try{
-        let {mapId, scoreData} = req.body;
+        // let {mapId, scoreData} = req.body;
+        let mapId = xss(req.body.mapId);
+        let scoreData = xss(req.body.scoreData);
         await mapData.addNewScore(mapId, scoreData);
     } catch (e){
         console.log(e); 
@@ -60,7 +63,7 @@ router.post("/newScore", async (req, res) => {
 
 router.post("/newMap", async (req, res) => {
     try{
-        let username =req.body.username;
+        let username =xss(req.body.username);
         let newMap = generator.generate(username);
         await mapData.createMap(newMap);
     }
