@@ -32,23 +32,23 @@
 <div id="game-functions" hidden>
     <div>
         <form method="POST" id="defeat">
-            <button type="submit">Give Up &#128522‬ to See Solution</button>
+            <label><button type="submit">Give Up &#128522‬ to See Solution</button></label>
         </form >
     </div>
     <div>
         {{#if ../loggedIn}}
             <form method="POST" id="save">
-                <button type="submit">Save</button>
+                <label><button type="submit">Save</button></label>
             </form>
             <form method="POST" id="load" action="/user/load">
-                <button type="submit">Load</button>
+                <label><button type="submit">Load</button></label>
             </form>
         {{/if}}
     </div>
     <div>
         <form method="POST" id="time">
-            <button id="getCurrentTime" type="submit" style="float:left;">Time</button>
-            <input id="showCurrentTime" style="float:right;">
+            <label><button id="getCurrentTime" type="submit" style="float:left;">Time</button>
+            <input id="showCurrentTime" style="float:right;"></label>
         </form>
     </div>
 </div>
@@ -68,12 +68,12 @@
     <div>
          <div>
             <form method="get" id="mainPage" action="/">
-                <button type="submit">Back to Home Page!</button>
+                <label><button type="submit">Back to Home Page!</button></label>
             </form >
         </div>
         <div>
             <form method="get" id="mapPage" action="/maps">
-                <button type="submit">Next New Game ></button>
+                <label><button type="submit">Next New Game ></button></label>
             </form >
         </div>
     </div>

@@ -45,7 +45,7 @@
         {{#if user}}
         <div id="logout">
             <form  method="POST" id="logout-form" action="/user/logout">
-                <button type="submit">Logout</button>
+                <label><button type="submit">Logout</button></label>
             </form>
         </div>
         <div id="username">Hello {{user.username}}!</div>
@@ -56,9 +56,9 @@
         {{/if}}
         <div id="login">
             <form method="POST" id="login-form" action="/user/login">
-                <input name="username" placeholder="username">
-                <input name="password" placeholder="password">
-                <button type = "submit">Submit</button>
+                <label>username:<input name="username" placeholder="username"></label>
+                <label>password:<input name="password" placeholder="password"></label>
+                <label><button type = "submit">Submit</button></label>                
             </form>
         </div>
         <div id="newUser">
