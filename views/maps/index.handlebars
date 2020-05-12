@@ -5,7 +5,7 @@
         <form id = "start-form">
             <button type="submit" id="start">Start</button>
         </form>
-        <input id="savedMapId" value={{_id}} hidden>
+        <label><input id="savedMapId" value={{_id}} hidden></label>
     </div>
 </div>
 <span id='difficulty' hidden>{{difficulty}}</span>
@@ -19,7 +19,7 @@
                     <span class="cell" id = {{@../index}}:{{@index}}>{{this}}</span>
                 {{/if}}
                 {{#unless this}}
-                    <input id = {{@../index}}:{{@index}} class = "input-cell cell" type = "number" min = "1" max = "9">
+                    <label><input id = {{@../index}}:{{@index}} class = "input-cell cell" type = "number" min = "1" max = "9"></label>
                 {{/unless}}
             {{/each}}
             </div>
@@ -47,8 +47,8 @@
     </div>
     <div>
         <form method="POST" id="time">
-            <label><button id="getCurrentTime" type="submit" style="float:left;">Time</button>
-            <input id="showCurrentTime" style="float:right;"></label>
+            <button id="getCurrentTime" type="submit" style="float:left;">Time</button>
+            <label><input id="showCurrentTime" style="float:right;"></label>
         </form>
     </div>
 </div>

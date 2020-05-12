@@ -11,7 +11,7 @@
 h2{
     text-decoration: underline;
 }
-.info-block p, h2{
+.info-block p, .info-block h2{
     color: white;
     text-align: center;
     padding-left: 25px;
