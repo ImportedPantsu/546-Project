@@ -3,11 +3,11 @@
     {{#each maps}}
     <li>
         <a href="/maps/{{_id}}">{{mapName}}</a> ({{difficulty}}):<br>
-            <div id = "table" class= "table">
+            <div  class= "table">
                 {{#each mapData}}
                     <div class="row">
                     {{#each this}}
-                            <span class="cell" id = s{{@../index}}:{{@index}}>{{this}}</span>
+                            <span class="cell" >{{this}}</span>
                     {{/each}}
                     </div>
                 {{/each}}
