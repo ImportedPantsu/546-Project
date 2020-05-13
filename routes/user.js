@@ -110,6 +110,11 @@ router.post("/create", async (req, res) => {
             password: xss(req.body.password),
             email:xss(req.body.email)
         }
+        if (!info.email || !info.username || !info.password) throw "Error: Must provide all fields (email, username, password)"
+        if (!info.email.includes("@")) throw 'Error: Must provide valid email'
+        if (typeof(info.email) != 'string') throw "Error: Email must be a string";
+        if (typeof(info.username) != 'string') throw "Username must be a string";
+        if (typeof(info.password) != 'string') throw "Password must be a string";
         let createdUser = await userData.createUser(info);
         if(!createdUser){
             res.render('newUser/index', 
@@ -122,7 +127,7 @@ router.post("/create", async (req, res) => {
         }
         console.log(createdUser)
         req.session.user = createdUser;
-        res.redirect("/home")
+        res.redirect("/");
     } catch (e){
         console.log(e);
         res.render('newUser/index', 
@@ -141,6 +146,8 @@ router.post("/save", async (req, res) => {
     if(completed == ''){
         completed = false
     }
+    if(time===undefined || mapId===undefined || completed===undefined) throw "save error: from input "
+
     let mapData = [];
     if (!Array.isArray(req.body.mapData)) throw "Map data must be an array of arrays";
         req.body.mapData.forEach(element => {
@@ -174,6 +181,7 @@ router.post("/save", async (req, res) => {
 
 router.post("/load", async (req, res) => {
     let mapId = xss(req.body.mapId);
+    if(!mapId) throw "no map to load";
     let username = "Anon";
     try{        
         username = req.session.user.username;
