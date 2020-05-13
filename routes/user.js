@@ -140,13 +140,16 @@ router.post("/create", async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
-    // let {time, mapId, mapData, completed} = req.body;
     let time = xss(req.body.time);
     let mapId = xss(req.body.mapId);
-    let completed = false;
-    if(req.body.completed === true) completed = true;
-    
+
+    let completed = xss(req.body.completed);
+    if(completed == ''){
+        completed = false
+    }
+
     if(time===undefined || mapId===undefined || completed===undefined) throw "save error: from input "
+
     let mapData = [];
     if (!Array.isArray(req.body.mapData)) throw "Map data must be an array of arrays";
         req.body.mapData.forEach(element => {

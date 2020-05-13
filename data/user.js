@@ -86,15 +86,18 @@ module.exports = {
     },
 
     async saveGame(username, mapId, mapData, time, completed){
-        if(!username) throw 'Error: Must provide username';
-        if(typeof(username) != 'string') throw 'Error: username must be string';
-        if (!Array.isArray(mapData)) throw "Map data must be an array of arrays";
+        if (!username) throw 'Error: Must provide username';
+        if (typeof(username) != 'string') throw 'Error: username must be string';
+        if (!Array.isArray(mapData)) throw "Error: Map data must be an array of arrays";
         mapData.forEach(element => {
-            if(!Array.isArray(element)) throw "Map data must be an array of arrays";
+            if(!Array.isArray(element)) throw "Error: Map data must be an array of arrays";
         });
-        if(!mapId) throw "Error: Must provide mapId";
+        if (!mapId) throw "Error: Must provide mapId";
         if (typeof(mapId) == "string") mapId = ObjectId(mapId);
-        if(!ObjectId.isValid(mapId)) throw "Error: Must provide mapId as ObjectId";
+        if (!ObjectId.isValid(mapId)) throw "Error: Must provide mapId as ObjectId";
+        if (!time) throw "Error: Must provide time";
+        if (typeof(time) != "string") throw "Error: Must provide time as number";
+        if (typeof(completed) != "string") throw "Error: Must provide completed as boolean";
         
         // Ensure map exists
         try{

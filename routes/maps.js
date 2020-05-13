@@ -56,17 +56,19 @@ router.get("/:id", async (req, res) => {
 
 router.post("/newScore", async (req, res) => {
     try{
-        // let {mapId, scoreData} = req.body;
         let mapId = xss(req.body.mapId);
-        let scoreData = {
-            rank : xss(req.body.scoreData.rank),
-            user : xss(req.body.scoreData.user),
-            score : xss(req.body.scoreData.score)
-        };
+
+
+        let scoreData = {}
+        scoreData['rank'] = xss(req.body.scoreData.rank);
+        scoreData['user'] = xss(req.body.scoreData.user);
+        scoreData['score'] = xss(req.body.scoreData.score);
+
         if(!mapId || !scoreData) {res.sendStatus("403");return;}
         await mapData.addNewScore(mapId, scoreData);
     } catch (e){
         console.log(e); 
+        res.sendStatus("400")
     }
     res.sendStatus("200")
 });
