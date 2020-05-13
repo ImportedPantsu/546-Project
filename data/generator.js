@@ -8,7 +8,6 @@ function generate(username) {
         }
         map.push(row);
     }
-    // console.log(map);
 
     let postFixName = Math.round(Math.random()*1000)+"";
 
@@ -57,22 +56,6 @@ function generate(username) {
         for(let i=0;i<9;i++){
             map[i][0] = mid[i];
         }
-
-        //I want to put a second seed but it usually becomes unsolutable
-        // mid = [];
-        // nums = [1,2,3];
-        // for(let i=0;i<3;i++){
-        //     let temp = Math.floor(Math.random()*(nums.length));
-        //     if(nums[temp]==map[i][0]){
-        //         if(temp==0) temp++;
-        //         else temp--; 
-        //     }
-        //     mid.push(nums[temp]);
-        //     nums.splice(temp, 1);
-        // }
-        // for(let i=0;i<3;i++){
-        //     map[8][i] = mid[i];
-        // }
 
         flag = solveSudoku(map);
     }
@@ -143,22 +126,17 @@ function solveSudoku(board) {
     let histr = getArr(9, 10);
     let histc = getArr(9, 10);
     let histb = getArr(9, 10);
-    // console.log("histr"+histr);
-    // console.log("histc"+histc);
-    
+
     for(let i = 0; i < 9; i++)
         for(let j = 0; j < 9; j++)
             if(board[i][j]!=0)
             {
                 let v = board[i][j];
-                // console.log(v+" "+i+" "+j+"  "+Math.floor(i/3)*3+(j/3));
-    // console.log(histb);
                 histr[i][v]++;
                 histc[j][v]++;
                 histb[Math.floor(i/3)*3+Math.floor(j/3)][v]++;
             }
     let res = DFS(board, 0, 0, histr, histc, histb);
-    //  System.out.println("res="+res);
     return res;
 }
     
@@ -192,10 +170,6 @@ function DFS( board,  i,  j,  histr,  histc,  histb)
     }
     if(board[i][j]!=0)
     {
-        //   int v = board[i][j] - '0';
-        //   histr[i][v]++;
-        //   histc[j][v]++;
-        //  histb[(i/3)*3+(j/3)][v]++;
         if(i%2==0){
             return DFS(board, i, j+1, histr, histc, histb);
         }            
@@ -229,7 +203,6 @@ function DFS( board,  i,  j,  histr,  histc,  histb)
 
 
 let map = generate();
-
 // console.log(map);
 
 module.exports = {generate};

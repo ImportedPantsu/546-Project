@@ -43,13 +43,10 @@ router.post("/login", async (req, res) => {
     username = username.trim();
     try{
         let user;        
-        // console.log("05/09/2020 lin 0");
-        //username is a string, but not in the database.
         try{
             user = await userData.getUser(username);
         }
         catch(e){
-            // console.log("05/09/2020 lin 1");
             res.render('home/index', 
             {
                 maps: mapList,
@@ -59,14 +56,12 @@ router.post("/login", async (req, res) => {
             }); 
             return;
         }
-        // console.log("05/09/2020 lin 2");
         let match = await bcrypt.compare(password, user.hashedPassword);
         
         if (match){
             let userInfo = {};
             Object.assign(userInfo, user);
             delete userInfo.hashedPassword;
-            // console.log(req.session);
             req.session.user = userInfo;
             res.render('home/index', 
             {
@@ -88,7 +83,6 @@ router.post("/login", async (req, res) => {
             return;
         }
     } catch(e){        
-        // console.log("05/09/2020 lin 3");
         console.log(e);
     }
 });
@@ -104,7 +98,6 @@ router.get("/new", async (req, res) => {
 
 router.post("/create", async (req, res) => {
     try {
-        // console.log("create trying");
         let info = {
             username: xss(req.body.username),
             password: xss(req.body.password),

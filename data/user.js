@@ -45,18 +45,14 @@ module.exports = {
         if (typeof(user.password) != 'string') throw "Password must be a string";
             //check unique email
             try{
-                //  console.log(user.email+""+user.username);
-                 let try1 = await this.getUserByEmail(user.email.toLowerCase());
-                //  console.log(try1);
+                 await this.getUserByEmail(user.email.toLowerCase());
                  return;
             }catch(e){
 
             }
-            //check qunique username
+            //check unique username
             try{
-                // console.log(user.email+""+user.username);;
                 let try2 = await this.getUser(user.username);
-                // console.log(try2);
                 return;
            }catch(e){
 
