@@ -268,6 +268,50 @@ const map6 = {
     ]
 };
 
+const test = {
+    mapName: "test",
+    mapData: [
+        [null,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+    ],
+    solution: [
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1]
+    ],
+    difficulty: 'easy',
+    scoreData: [
+        {
+            rank: 1,
+            user: '-',
+            score: 0
+        },
+        {
+            rank: 2,
+            user: '-',
+            score: 0
+        },
+        {
+            rank: 3,
+            user: '-',
+            score: 0
+        },
+    ]
+};
+
 const testUser = {
     email: 'joe@doe.com',
     username: 'fake',
@@ -280,6 +324,7 @@ async function main() {
     usersCollection.deleteMany({});
     mapsCollection.deleteMany({});
     try{
+        await mapData.createMap(test);
         await mapData.createMap(map1);
         await mapData.createMap(map2);
         await mapData.createMap(map3);

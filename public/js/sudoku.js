@@ -25,7 +25,7 @@ function checkScoreBoard(score, username = 'Anon'){
             newScore["rank"] = i;
             newScore["user"] = username;
             newScore["score"] = score;
-
+            console.log(newScore)
             let requestConfig = {
                 method: 'POST',
                 url: '/maps/newScore',
@@ -90,7 +90,7 @@ if (staticForm) {
             console.log(score);
             let username;
             try{
-                username = document.getElementById("username").innerHTML.split(" ").slice(-1)[0].slice(0,-1)
+                username = document.getElementById("disply-username").innerHTML.split(" ").slice(-1)[0].slice(0,-1)
                 checkScoreBoard(score, username);
             } catch (e){
                 checkScoreBoard(score);
