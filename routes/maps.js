@@ -65,29 +65,29 @@ router.post("/newScore", async (req, res) => {
     console.log(map)
     try{
         let scoreData = {}
-        scoreData['rank'] = xss(req.body.scoreData.rank);
+        scoreData['rank'] = Number(xss(req.body.scoreData.rank));
         scoreData['user'] = xss(req.body.scoreData.user);
-        scoreData['score'] = xss(req.body.scoreData.score);
+        scoreData['score'] = Number(xss(req.body.scoreData.score));
         if(!mapId || !scoreData) {res.sendStatus("403");return;}
-        if(scoreData['rank'] == '1'){
+        if(scoreData['rank'] == 1){
             let newSecond = map.scoreData[0];
-            newSecond.rank = '2';
+            newSecond.rank = 2;
             let newThrid = map.scoreData[1];
-            newThrid.rank = '3';
+            newThrid.rank = 3;
             await mapData.addNewScore(mapId, newSecond);
             await mapData.addNewScore(mapId, newThrid);
         }
-        if(scoreData['rank'] == '2'){
+        if(scoreData['rank'] == 2){
             let newThrid = map.scoreData[1];
-            newThrid.rank = '3';
+            newThrid.rank = 3;
             await mapData.addNewScore(mapId, newThrid);
         }
         await mapData.addNewScore(mapId, scoreData);
+        res.sendStatus("200")
     } catch (e){
         console.log(e); 
         res.sendStatus("400")
     }
-    res.sendStatus("200")
 });
 
 router.post("/newMap", async (req, res) => {

@@ -22,9 +22,16 @@ function checkScoreBoard(score, username = 'Anon'){
         if (score > scoreTable.childNodes[1].childNodes[(i*2)].cells[2].firstChild.data){
             scoreTable.childNodes[1].childNodes[(i*2)].cells[2].firstChild.data = score;
             scoreTable.childNodes[1].childNodes[(i*2)].cells[1].firstChild.data = username;
-            newScore["rank"] = i;
+            newScore["rank"] = Number(i);
             newScore["user"] = username;
-            newScore["score"] = score;
+            newScore["score"] = Number(score);
+            if(!newScore["rank"] || !newScore["user"] || !newScore["score"]){
+                throw 'Error: Must provide all score table fields'
+            }
+            if(typeof(newScore["rank"]) != "number" || typeof(newScore["user"]) != "string" || typeof(newScore["score"]) != "number"){
+                throw 'Error: All score table values must be of correct type'
+            }
+            if(!mapId || typeof(mapId) != 'string') throw 'Error: Must provide mapId as string'
             console.log(newScore)
             let requestConfig = {
                 method: 'POST',
@@ -88,6 +95,7 @@ if (staticForm) {
             let difficultyMultiplier = difficultyScore[document.getElementById('difficulty').innerHTML];
             let score = Math.round(difficultyMultiplier * (1000000/(endTime - startTime)));
             console.log(score);
+            let time = (endTime - startTime);
             let username;
             try{
                 username = document.getElementById("disply-username").innerHTML.split(" ").slice(-1)[0].slice(0,-1)
@@ -95,12 +103,20 @@ if (staticForm) {
             } catch (e){
                 checkScoreBoard(score);
             }
+            if (time===undefined || mapId===undefined) throw "save error: from input "
+            if (typeof(time) != 'number' || typeof(mapId) != 'string'){
+                throw 'Error: Save inputs must be of correct type'
+            }
+            if (!Array.isArray(table)) throw "Error: Map data must be an array of arrays";
+                table.forEach(element => {
+                    if(!Array.isArray(element)) throw "Error: Map data must be an array of arrays";
+                });
             let requestConfig = {
                 method: 'post',
                 url: '/user/save',
                 contentType: "application/json" ,
                 data: JSON.stringify({
-                    time: (endTime - startTime),
+                    time: time,
                     mapData: table,
                     mapId: mapId,
                     completed: true
@@ -134,9 +150,9 @@ if(saveForm) {
     saveForm.addEventListener("submit", event => {
         event.preventDefault();
         let table = [];
-        for(let i = 0; i < 8; i++){
+        for(let i = 0; i < 9; i++){
             let row = [];
-            for(let j = 0; j < 8; j++){
+            for(let j = 0; j < 9; j++){
                 let element = document.getElementById(`${i}:${j}`);
                 if (element.classList.contains("input-cell")){
                     row.push(element.value);
@@ -152,6 +168,14 @@ if(saveForm) {
         let endDate = new Date();
         endTime = endDate.getTime()/1000;
         let time = endTime - startTime;
+        if (time===undefined || mapId===undefined) throw "save error: from input "
+        if (typeof(time) != 'number' || typeof(mapId) != 'string'){
+            throw 'Error: Save inputs must be of correct type'
+        }
+        if (!Array.isArray(table)) throw "Error: Map data must be an array of arrays";
+            table.forEach(element => {
+                if(!Array.isArray(element)) throw "Error: Map data must be an array of arrays";
+            });
         console.log(`Saved Game: ID ${mapId} Time ${time} Data ${table}`);
         let requestConfig = {
             method: 'post',
@@ -180,6 +204,10 @@ if (loadForm) {
         event.preventDefault();
 
         let mapId = document.getElementById("savedMapId").value;
+        if (mapId===undefined) throw "Load error: from input "
+        if (typeof(mapId) != 'string'){
+            throw 'Error: Load inputs must be of correct type'
+        }
         let requestConfig = {
             method: 'POST',
             url: '/user/load',
@@ -194,8 +222,8 @@ if (loadForm) {
                 let loadedTime = $(responseMessage)[0]['time']; 
                 startTime = startTime - loadedTime 
                 console.log(startTime)
-                for(let i = 0; i < 8; i++){
-                    for(let j = 0; j < 8; j++){
+                for(let i = 0; i < 9; i++){
+                    for(let j = 0; j < 9; j++){
                         let element = document.getElementById(`${i}:${j}`);
                         let savedCell = loadedData[i][j];
                         if (element.classList.contains("input-cell")){

@@ -96,8 +96,8 @@ module.exports = {
         if (typeof(mapId) == "string") mapId = ObjectId(mapId);
         if (!ObjectId.isValid(mapId)) throw "Error: Must provide mapId as ObjectId";
         if (!time) throw "Error: Must provide time";
-        if (typeof(time) != "string") throw "Error: Must provide time as number";
-        if (typeof(completed) != "string") throw "Error: Must provide completed as boolean";
+        if (typeof(time) != "number") throw "Error: Must provide time as number";
+        if (typeof(completed) != "boolean") throw "Error: Must provide completed as boolean";
         
         // Ensure map exists
         try{

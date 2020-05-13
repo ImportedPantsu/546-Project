@@ -56,10 +56,20 @@ module.exports = {
     },
 
     async addNewScore(id, newScoreData){
+        console.log(newScoreData['rank'])
+        console.log(newScoreData['user'])
+        console.log(newScoreData['score'])
         if (!id) throw "Error: Must provide id of desired map";
         if (typeof(id) == "string") id = ObjectId(id); // If the id is passed as a string its converted
         if (!ObjectId.isValid(id)) throw "Error: Must provide id as ObjectId";
         if (!newScoreData || typeof(newScoreData) != "object") throw "Error: Must provide new score data as string"
+        if (!newScoreData['rank'] || !newScoreData['user'] || isNaN(newScoreData['score'])){
+            throw "Error: Must include all score data values";
+        }
+        if (newScoreData['score'] < 0) throw 'Error Score cannot be negative';
+        if (typeof(newScoreData['rank']) != "number" || typeof(newScoreData['user']) != "string" || typeof(newScoreData['score']) != "number"){
+            throw "Error: Score data values must be of correct types"
+        }
         position = newScoreData['rank'] - 1;
         Number(position)
         let update = { "$set": { } }

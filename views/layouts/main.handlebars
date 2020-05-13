@@ -7,74 +7,74 @@
         <link rel="stylesheet" href={{style}}>
         <link href = "../public/css/rules.css" rel = "stylesheet">
     </head>
-    <h1>Sudoku Paradise 
-        <button type="submit" id="music" onclick="javascript:togglePlay();">
-            <img src = "../public/images/Speaker.png" alt="Italics"/>
-        </button>
-        <audio id="audio"><source src ="../public/audio/Minecraft.mp3" type="audio/mp3"> Browser does not support audio format</audio>
-    </h1>
-    <div class="topnav">
-        <a href="/">Home</a>
-        <a href="/maps">Maps</a>
-        <a href="/tutorial">Tutorial</a>
-        <p>
-            <button class = "rule_btn" data-modal-target="#modal">Rules</button>
-            <div class="modal" id="modal">
-                <div class = "modal-header">
-                    <div class = "title"> How To Play Sudoku</div>
-                        <button data-close-button class = "close-button">&times;</button>
-                </div>
-                <div class= "Modal body">
-                    <h2 class="Goal">Goal</h2>
-                    <p class = "Goal_text">The goal is to fill in all the empty cells on the board with the correct numbers.</p>
-                    <h2 class= "Rules">Rules</h2>
-                    <p class = "Rules_text">Each cell takes a number between 1 and 9. A number may only appear once in a single row, column or three-by-three box</p>
-                    <h2 class = "how_play">How To Play</h2>
-                    <p class ="play">Click a cell to select it. Then type a number into the cell. Once you are finished click the submit button to check your answers</p> 
-                </div>
-            </div>
-            <div id="overlay"></div>
-        </p>
-
-        {{#if user}}
-        <div id="logout">
-            <form  method="POST" id="logout-form" action="/user/logout">
-                <label><button type="submit">Logout</button></label>
-            </form>
-        </div>
-        <div id="disply-username">Hello {{user.username}}!</div>
-        {{/if}}
-        {{#unless user}}
-        {{#if loginError}}
-            <span id="error">Invalid Username or Password</span>
-        {{/if}}
-        <div id="login">
-            <form method="POST" id="login-form" action="/user/login">
-                <div id="username-div">
-                    <label for="username">Username:</label>
-                    <input id="username" name="username" placeholder="username">
-                </div>
-                <div id="password-div">
-                    <label for="password">Password:</label>
-                    <input id="password" name="password" placeholder="password">
-                </div>
-                <div>
-                    <button type = "submit">Login</button>
-                    <a id="newUser" href="/user/new">New here? Create an account!</a>
-                </div>              
-            </form>
-        </div>
-        {{/unless}}
-    </div> 
     <body>
+        <h1>Sudoku Paradise 
+            <button type="submit" id="music" onclick="javascript:togglePlay();">
+                <img src = "../public/images/Speaker.png" alt="Italics"/>
+            </button>
+            <audio id="audio"><source src ="../public/audio/Minecraft.mp3" type="audio/mp3"> Browser does not support audio format</audio>
+        </h1>
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/maps">Maps</a>
+            <a href="/tutorial">Tutorial</a>
+            <p>
+                <button class = "rule_btn" data-modal-target="#modal">Rules</button>
+                <div class="modal" id="modal">
+                    <div class = "modal-header">
+                        <div class = "title"> How To Play Sudoku</div>
+                        <button data-close-button class = "close-button">&times;</button>
+                    </div>
+                    <div class= "Modal body">
+                        <h2 class="Goal">Goal</h2>
+                        <p class = "Goal_text">The goal is to fill in all the empty cells on the board with the correct numbers.</p>
+                        <h2 class= "Rules">Rules</h2>
+                        <p class = "Rules_text">Each cell takes a number between 1 and 9. A number may only appear once in a single row, column or three-by-three box</p>
+                        <h2 class = "how_play">How To Play</h2>
+                        <p class ="play">Click a cell to select it. Then type a number into the cell. Once you are finished click the submit button to check your answers</p> 
+                    </div>
+                </div>
+                <div id="overlay"></div>
+            {{!-- </p> --}}
+
+            {{#if user}}
+            <div id="logout">
+                <form  method="POST" id="logout-form" action="/user/logout">
+                    <label><button type="submit">Logout</button></label>
+                </form>
+            </div>
+            <div id="disply-username">Hello {{user.username}}!</div>
+            {{/if}}
+            {{#unless user}}
+            {{#if loginError}}
+                <span id="error">Invalid Username or Password</span>
+            {{/if}}
+            <div id="login">
+                <form method="POST" id="login-form" action="/user/login">
+                    <div id="username-div">
+                        <label for="username">Username:</label>
+                        <input id="username" name="username" placeholder="username">
+                    </div>
+                    <div id="password-div">
+                        <label for="password">Password:</label>
+                        <input id="password" name="password" placeholder="password">
+                    </div>
+                    <div>
+                        <button type = "submit">Login</button>
+                        <a id="newUser" href="/user/new">New here? Create an account!</a>
+                    </div>              
+                </form>
+            </div>
+            {{/unless}}
+        </div> 
+        
         {{{body}}}
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script defer src = '../public/js/rules.js'></script>
         <script defer src = '../public/js/music.js'></script>
-    </body>
-    <footer>
-        <div id="img1" >
-         <a href="/" target="_blank"><img src="/public/images/adv2.jpg" alt="Italics"></a>
+
+        <div id="ad" >
+            <a href="/" target="_blank"><img src="/public/images/adv2.jpg" alt="Italics"></a>
         </div> 
-    </footer>
+    </body>
 </html>
