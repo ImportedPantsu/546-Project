@@ -2,38 +2,37 @@
 
 * [https://github.com/ImportedPantsu/546-Project.git](https://github.com/ImportedPantsu/546-Project.git)
 
-* npm install
-* npm start
+* Run npm install
+* Run npm start
 
-* on the page of localhost:3000 you can visit or login.
-> * localhost:3000
+*  You can visit the page at localhost:3000.
 
-* the seed.js is inside tasks and will be run by app.js. It builds up the basic databases, also will refresh databases.
+* The seed.js is inside the tasks directory and will be run by app.js. It builds up the basic database, also will refresh the database if it exists already.
 
-* inititial username: "fake" password: "password"
+* Initial username: "fake" password: "password"
 > * fake
 > * password
 
-* or create account by unique "username" and "email" and a password.
+* Or you can create an account by with a unique username, email and password.
 
-* if you want a background music, you can try the icon beside "Sudoku Paradise".
+* If you want a background music, you can click the icon beside "Sudoku Paradise" title.
 
-* you can create random maps on maps page.
+* You can create random maps on Maps page.
 
-* every click on the map link will get to the map, click "start" to start the game.
+* Clicking on the map link will bring you to the map's page, click "start" to start the game.
 
-* you can save and load the game if you are logged-in.
+* You can save and load the game if you are logged-in.
 
-* give-up or finish successfully will show the solution.
+* Giving-up or finishing successfully will show the solution.
 
-* if you want to test functions quickly, you can choose some very simple maps, such as "test" map with "1" as solution, or "demo" with "2 9 8".
+* If you want to test functions quickly, you can choose some very simple maps, such as "test" map with "1" as solution, or "demo" with "2 9 8".
 
-* unsuccessful submition will return to the game.
+* Unsuccessful submition will return to the same map page with wrong inputs highlighted.
 
-* if you are not logged in, and successfully submit the game, your name will be recorded as "Anon" into scoretable.
+* If you are not logged in, and successfully submit the game, your name will be recorded as "Anon" into the scoretable.
 
-* if you want to know how long you spend on this map, click on time button.
+* If you want to know how long you spend on the current map, click on time button.
 
-* save/load functions are based on AJAX.
+* Save/load functions are based on AJAX.
 
-* click on the advertisement will redirect to some websites.
+* Click on the advertisement will redirect to some websites (currently ours).
