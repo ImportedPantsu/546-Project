@@ -142,10 +142,12 @@ router.post("/create", async (req, res) => {
 router.post("/save", async (req, res) => {
     let time = xss(req.body.time);
     let mapId = xss(req.body.mapId);
+
     let completed = xss(req.body.completed);
     if(completed == ''){
         completed = false
     }
+
     if(time===undefined || mapId===undefined || completed===undefined) throw "save error: from input "
 
     let mapData = [];
