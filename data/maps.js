@@ -56,11 +56,12 @@ module.exports = {
     },
 
     async addNewScore(id, newScoreData){
-        if(!id) throw "Error: Must provide id of desired map";
+        if (!id) throw "Error: Must provide id of desired map";
         if (typeof(id) == "string") id = ObjectId(id); // If the id is passed as a string its converted
-        if(!ObjectId.isValid(id)) throw "Error: Must provide id as ObjectId";
-        
+        if (!ObjectId.isValid(id)) throw "Error: Must provide id as ObjectId";
+        if (!newScoreData || typeof(newScoreData) != "object") throw "Error: Must provide new score data as string"
         position = newScoreData['rank'] - 1;
+        Number(position)
         let update = { "$set": { } }
         update["$set"]["scoreData." + position] = newScoreData;
         const mapsCollection = await maps();
