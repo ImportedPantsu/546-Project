@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
             return;
         }
         map = await mapData.getMapById(id);
-    } catch{
+    } catch(e){
         res.render('maps/invalid', 
         {
             title: "Invalid Map",
