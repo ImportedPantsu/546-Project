@@ -26,6 +26,8 @@
 
 * give-up or finish successfully will show the solution.
 
+* if you want to test functions quickly, you can choose some very simple maps, such as "test" map with "1" as solution, or "demo" with "2 9 8".
+
 * unsuccessful submition will return to the game.
 
 * if you are not logged in, and successfully submit the game, your name will be recorded as "Anon" into scoretable.
