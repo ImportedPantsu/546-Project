@@ -108,7 +108,7 @@ router.post("/create", async (req, res) => {
         let info = {
             username: xss(req.body.username),
             password: xss(req.body.password),
-            email:xss(req.body.email)
+            email: xss(req.body.email)
         }
         if (!info.email || !info.username || !info.password) throw "Error: Must provide all fields (email, username, password)"
         if (!info.email.includes("@")) throw 'Error: Must provide valid email'
@@ -140,13 +140,9 @@ router.post("/create", async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
-    let time = xss(req.body.time);
+    let time = Number(xss(req.body.time));
     let mapId = xss(req.body.mapId);
-
-    let completed = xss(req.body.completed);
-    if(completed == ''){
-        completed = false
-    }
+    let completed = Boolean(xss(req.body.completed));
 
     if(time===undefined || mapId===undefined || completed===undefined) throw "save error: from input "
 
@@ -158,7 +154,7 @@ router.post("/save", async (req, res) => {
     for(let t=0;t<req.body.mapData.length;t++){
         let temp = [];
         for(let s=0;s<req.body.mapData[t].length;s++){
-            temp.push(xss(req.body.mapData[t][s]));
+            temp.push(Number(xss(req.body.mapData[t][s])));
         }
         mapData.push(temp);
     }
