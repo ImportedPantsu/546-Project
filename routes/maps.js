@@ -62,7 +62,6 @@ router.post("/newScore", async (req, res) => {
     } catch (e){
         console.log(e)
     }
-    console.log(map)
     try{
         let scoreData = {}
         scoreData['rank'] = Number(xss(req.body.scoreData.rank));

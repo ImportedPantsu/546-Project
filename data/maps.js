@@ -56,9 +56,6 @@ module.exports = {
     },
 
     async addNewScore(id, newScoreData){
-        console.log(newScoreData['rank'])
-        console.log(newScoreData['user'])
-        console.log(newScoreData['score'])
         if (!id) throw "Error: Must provide id of desired map";
         if (typeof(id) == "string") id = ObjectId(id); // If the id is passed as a string its converted
         if (!ObjectId.isValid(id)) throw "Error: Must provide id as ObjectId";
