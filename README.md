@@ -16,6 +16,8 @@
 
 * or create account by unique "username" and "email" and a password.
 
+* if you want a background music, you can try the icon beside "Sudoku Paradise".
+
 * you can create random maps on maps page.
 
 * every click on the map link will get to the map, click "start" to start the game.
@@ -26,7 +28,7 @@
 
 * unsuccessful submition will return to the game.
 
-* if you are not logged in, and successfully submit the game, your name will be recorded as "Anon" into scoretable
+* if you are not logged in, and successfully submit the game, your name will be recorded as "Anon" into scoretable.
 
 * if you want to know how long you spend on this map, click on time button.
 
