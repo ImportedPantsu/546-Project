@@ -8,6 +8,8 @@
 * on the page of localhost:3000 you can visit or login.
 > * localhost:3000
 
+* the seed.js is inside tasks and will be run by app.js. It builds up the basic databases, also will refresh databases.
+
 * inititial username: "fake" password: "password"
 > * fake
 > * password
