@@ -1,4 +1,4 @@
-# Instruction to Sudoku Paradise
+# Instruction for Sudoku Paradise
 
 * [https://github.com/ImportedPantsu/546-Project.git](https://github.com/ImportedPantsu/546-Project.git)
 
