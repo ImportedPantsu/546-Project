@@ -22,6 +22,23 @@ app.use(
 	})
 );
 
+app.use('/user/save', (req, res, next) => {
+	if (!req.session.user) {
+		req.method = 'GET'
+		return res.redirect('/');
+	} else {
+		next();
+	}
+});
+
+app.use('/user/load', (req, res, next) => {
+	if (!req.session.user) {
+		req.method = 'GET'
+		return res.redirect('/');
+	} else {
+		next();
+	}
+});
 
 app.use((req, res, next)=>{
     try{
